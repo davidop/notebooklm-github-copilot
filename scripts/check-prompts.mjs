@@ -7,13 +7,21 @@ const ROOT = resolve(__dirname, '..');
 const PROMPTS_DIR = join(ROOT, 'prompt-packs');
 
 // Patterns handle both singular and plural forms, and common section title variations.
-const REQUIRED_SECTIONS = [
+const TEAM_REQUIRED_SECTIONS = [
   { label: 'Team profile / Profile', pattern: /\bteam\s+profile\b|\bprofile\b/i },
   { label: 'Workflow', pattern: /\bworkflows?\b/i },
   { label: 'NotebookLM', pattern: /\bnotebooklm\b/i },
   { label: 'Prompt', pattern: /\bprompt/i },
   { label: 'Quality / Checklist', pattern: /\bquality\b|\bchecklist\b/i },
   { label: 'Risk', pattern: /\brisks?\b/i },
+];
+
+// Output-format files have a different structure (when to use, prompt, expected output, validation, limitations).
+const OUTPUT_FORMAT_REQUIRED_SECTIONS = [
+  { label: 'When to use', pattern: /\bwhen to use\b/i },
+  { label: 'Prompt', pattern: /\bprompt\b/i },
+  { label: 'Expected output', pattern: /\bexpected output\b|\boutput shape\b/i },
+  { label: 'Limitations', pattern: /\blimitations?\b|\bvalidation\b/i },
 ];
 
 function findMarkdownFiles(dir) {
@@ -49,7 +57,11 @@ for (const filePath of mdFiles) {
   const relative = filePath.replace(ROOT + '/', '');
   const missing = [];
 
-  for (const { label, pattern } of REQUIRED_SECTIONS) {
+  // Use different required sections for output-format files vs team prompt packs
+  const isOutputFormat = filePath.includes('/output-formats/');
+  const sections = isOutputFormat ? OUTPUT_FORMAT_REQUIRED_SECTIONS : TEAM_REQUIRED_SECTIONS;
+
+  for (const { label, pattern } of sections) {
     const found = headings.some((h) => pattern.test(h));
     if (!found) missing.push(label);
   }
