@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1280" height="640" viewBox="0 0 1280 640" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1280" height="640" fill="#0d1117"/>
+  <rect x="0" y="580" width="1280" height="4" fill="#238636"/>
+  <rect x="0" y="56" width="1280" height="1" fill="#30363d"/>
+  <text x="640" y="260" font-family="system-ui, -apple-system, sans-serif" font-size="64" font-weight="700" fill="#ffffff" text-anchor="middle">NotebookLM + GitHub Copilot + MCP</text>
+  <text x="640" y="340" font-family="system-ui, -apple-system, sans-serif" font-size="32" font-weight="400" fill="#8b949e" text-anchor="middle">Source-grounded AI engineering in VS Code</text>
+  <text x="640" y="420" font-family="system-ui, -apple-system, sans-serif" font-size="22" font-weight="400" fill="#484f58" text-anchor="middle">Unofficial community project · MIT License</text>
+</svg>

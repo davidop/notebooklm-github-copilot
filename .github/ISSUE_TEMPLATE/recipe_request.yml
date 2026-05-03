@@ -1,0 +1,51 @@
+name: Recipe Request
+description: Request a new workflow recipe for the recipes/ folder
+title: "[Recipe]: "
+labels: ["recipe"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        A recipe is a step-by-step workflow guide that shows how to use GitHub Copilot + NotebookLM MCP to solve a specific engineering problem.
+        
+        Describe the workflow you want documented and we'll consider adding it to the `recipes/` folder.
+
+  - type: input
+    id: workflow-name
+    attributes:
+      label: Workflow name
+      description: A short name for this recipe (e.g. "Generate API documentation from code").
+      placeholder: e.g. Generate API documentation from code
+    validations:
+      required: true
+
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use case
+      description: Describe the problem this recipe solves and when someone would use it.
+    validations:
+      required: true
+
+  - type: textarea
+    id: sources
+    attributes:
+      label: Required NotebookLM sources
+      description: What types of documents would need to be in NotebookLM for this recipe?
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected-output
+    attributes:
+      label: Expected output
+      description: What should Copilot produce when this recipe is followed?
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: willing-to-contribute
+    attributes:
+      label: Contribution
+      options:
+        - label: I am willing to write this recipe myself and submit a pull request.
