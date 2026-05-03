@@ -4,12 +4,25 @@
   "private": true,
   "description": "Connect GitHub Copilot with NotebookLM through MCP for source-grounded coding, architecture, and presales workflows.",
   "type": "module",
+  "keywords": [
+    "notebooklm",
+    "github-copilot",
+    "mcp",
+    "model-context-protocol",
+    "vscode",
+    "ai-agents",
+    "grounded-ai",
+    "architecture",
+    "presales",
+    "azure"
+  ],
   "scripts": {
     "validate": "node scripts/validate.mjs",
     "smoke:test": "node scripts/smoke-test.mjs",
     "mcp:notebooklm": "npx notebooklm-mcp@latest",
     "mcp:notebooklm:http": "npx notebooklm-mcp@latest --transport http --port 3000",
-    "pin:notebooklm": "node scripts/pin-notebooklm-version.mjs"
+    "pin:notebooklm": "node scripts/pin-notebooklm-version.mjs",
+    "lint:markdown": "npx markdownlint-cli2 \"**/*.md\" --ignore node_modules"
   },
   "engines": {
     "node": ">=18"
