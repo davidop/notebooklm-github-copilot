@@ -1,0 +1,38 @@
+---
+description: Generate code grounded in vendor documentation and specifications retrieved from NotebookLM.
+globs: "**/*.{ts,js,py,cs,go,java,bicep,tf,yaml,yml}"
+alwaysApply: false
+---
+
+# Source-grounded code generation rule
+
+Before generating, reviewing, or modifying code that depends on:
+
+- vendor APIs or SDKs
+- architecture specifications
+- infrastructure requirements (Bicep, Terraform, YAML)
+- integration contracts or data schemas
+- security or compliance requirements
+
+**You must first query NotebookLM** to retrieve the relevant vendor documentation, specification, or requirements from the available notebooks.
+
+## Required behavior
+
+1. Call `query_notebook` with a focused question about the relevant specification or requirement.
+2. Summarize the retrieved documentation before writing code.
+3. Generate code that aligns to the retrieved specification.
+4. Note any assumptions made where documentation was ambiguous or missing.
+5. Do not generate code based on general knowledge alone when notebook sources contain relevant specifications.
+
+## Example prompt pattern
+
+```
+Use NotebookLM to retrieve the [vendor] API specification for [feature].
+Generate [language] code that implements [functionality] aligned to the retrieved documentation.
+Note any assumptions where the documentation was unclear.
+```
+
+## Security constraint
+
+Never send secrets, connection strings, tokens, or personal data to NotebookLM.
+Only query for technical specifications and requirements.

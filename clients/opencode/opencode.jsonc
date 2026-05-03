@@ -1,0 +1,17 @@
+{
+  // OpenCode configuration for NotebookLM MCP integration.
+  // Place this file at ~/.config/opencode/config.jsonc or merge into your existing config.
+  // See: https://opencode.ai/docs/configuration
+  "$schema": "https://opencode.ai/config.schema.json",
+  "mcpServers": {
+    "notebooklm": {
+      // Runs notebooklm-mcp via npx. Node.js 18+ and Chrome stable required.
+      "command": "npx",
+      "args": ["-y", "notebooklm-mcp@latest"],
+      "env": {
+        // Set to "work" or "personal" to select the Chrome profile used by notebooklm-mcp.
+        "NOTEBOOKLM_ACCOUNT": "work"
+      }
+    }
+  }
+}

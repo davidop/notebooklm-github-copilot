@@ -1,0 +1,39 @@
+---
+description: Ground all research and question-answering in NotebookLM sources before responding.
+globs: "**/*"
+alwaysApply: true
+---
+
+# NotebookLM research rule
+
+Before answering any question that involves:
+
+- architecture decisions or constraints
+- requirements (functional or non-functional)
+- vendor or product documentation
+- prior proposals, delivery, or case studies
+- migration constraints or dependencies
+- security or compliance requirements
+- meeting notes or action items
+
+**You must first call the NotebookLM MCP server** to retrieve relevant context from the available notebooks.
+
+## Required behavior
+
+1. Call `list_notebooks` to see what is available.
+2. Call `query_notebook` with a focused, specific question.
+3. Summarize the retrieved findings before answering.
+4. Cite every source returned by NotebookLM.
+5. If NotebookLM cannot answer the question, say so explicitly — do not invent context.
+
+## Example prompt pattern
+
+```
+Before answering, use NotebookLM to retrieve relevant context from my notebooks.
+Summarize what the sources say about [topic].
+Cite each source. Do not invent information not found in the notebooks.
+```
+
+## Security constraint
+
+Never send secrets, API keys, credentials, personal data, or regulated customer data to NotebookLM.

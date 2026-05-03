@@ -1,0 +1,11 @@
+{
+  "servers": {
+    "notebooklm": {
+      "command": "npx",
+      "args": ["-y", "notebooklm-mcp@latest"],
+      "env": {
+        "NOTEBOOKLM_ACCOUNT": "work"
+      }
+    }
+  }
+}

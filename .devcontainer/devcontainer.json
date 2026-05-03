@@ -1,14 +1,18 @@
 {
   "name": "NotebookLM + GitHub Copilot",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/github-cli:1": {}
+  },
   "customizations": {
     "vscode": {
       "extensions": [
         "GitHub.copilot",
         "GitHub.copilot-chat",
-        "yzhang.markdown-all-in-one",
         "GitHub.vscode-github-actions",
-        "redhat.vscode-yaml"
+        "yzhang.markdown-all-in-one",
+        "redhat.vscode-yaml",
+        "ZainChen.json"
       ],
       "settings": {
         "editor.formatOnSave": true
