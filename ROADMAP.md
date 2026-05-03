@@ -19,14 +19,14 @@ This roadmap describes the planned evolution of this project. It is aspirational
 
 ---
 
-## v0.2 — Broader editor support
+## v0.2 — Broader editor support ✅
 
-- OpenCode support
-- Cursor support
-- Dev Container support (Codespaces-ready configuration)
-- Demo GIF or short video walkthrough
-- More recipes: incident post-mortems, security reviews, API design
-- Improved troubleshooting guide
+- OpenCode support (`clients/opencode/`)
+- Cursor support (`clients/cursor/`)
+- VS Code client reference (`clients/vscode/`)
+- Multi-client documentation (`docs/mcp-clients.md`)
+- Dev Container improvements (GitHub CLI, JSON extension)
+- Dev Container documentation (`docs/devcontainer.md`)
 
 ---
 

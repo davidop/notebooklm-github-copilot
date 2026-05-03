@@ -1,0 +1,47 @@
+---
+description: Review architecture proposals against constraints and prior decisions retrieved from NotebookLM.
+globs: "**/*.{md,mermaid,drawio,bicep,tf,yaml,yml}"
+alwaysApply: false
+---
+
+# Architecture review rule
+
+Before reviewing any architecture proposal, diagram, or infrastructure-as-code file:
+
+1. Query NotebookLM for architecture principles, non-functional requirements, and prior decisions relevant to the scope.
+2. Evaluate the proposed design against the retrieved constraints.
+3. Identify gaps, risks, and conflicts with retrieved constraints.
+4. Cite every retrieved source in the review output.
+5. Mark any evaluation point that is not grounded in a source as an assumption.
+
+## Required behavior
+
+- Always call `list_notebooks` first to identify relevant notebooks.
+- Use focused questions such as: "What are the architecture constraints for [system]?" or "What prior decisions exist for [technology choice]?"
+- Do not recommend patterns or technologies based on general knowledge alone when notebook sources contain relevant constraints.
+- If the notebooks do not contain sufficient evidence, say so and list what documentation would be needed.
+
+## Output structure
+
+For every architecture review, produce:
+
+1. **Source-backed constraints** — what the notebooks say, with citations
+2. **Alignment** — where the proposed design meets the constraints
+3. **Gaps and risks** — where it does not, or where evidence is missing
+4. **Assumptions** — claims made without source backing
+5. **Recommended next steps**
+
+## Example prompt pattern
+
+```
+Use NotebookLM to retrieve architecture principles and prior decisions for [project or domain].
+Review the following proposed design:
+
+[design description]
+
+List alignment, gaps, risks, and assumptions. Cite every source.
+```
+
+## Security constraint
+
+Never send secrets, credentials, or personal data to NotebookLM.

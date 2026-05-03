@@ -6,6 +6,19 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.2.0] — Multi-client MCP toolkit
+
+### Added
+
+- **OpenCode support** — `clients/opencode/` with `opencode.jsonc` configuration and agent instruction files for researcher, architect, and presales workflows.
+- **Cursor support** — `clients/cursor/` with `mcp.json` configuration and Cursor Rules for source-grounded research, code generation, and architecture review.
+- **VS Code client reference** — `clients/vscode/` with reference `mcp.json`, `copilot-instructions.example.md`, and an explanation of VS Code MCP discovery and Copilot instruction loading.
+- **Multi-client documentation** — `docs/mcp-clients.md` comparing GitHub Copilot, OpenCode, Cursor, and generic MCP clients with a Mermaid architecture diagram.
+- **Dev Container documentation** — `docs/devcontainer.md` covering local VS Code Dev Containers usage, Codespaces caveats, browser automation limitations, and troubleshooting.
+- **Dev Container improvements** — Added GitHub CLI feature and JSON VS Code extension to `.devcontainer/devcontainer.json`.
+
+---
+
 ## [0.1.0] — Initial release
 
 ### Added

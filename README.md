@@ -51,6 +51,8 @@ flowchart TD
     end
 ```
 
+Other supported clients (OpenCode, Cursor) connect to the same `notebooklm-mcp` server using the same stdio transport. See [docs/mcp-clients.md](docs/mcp-clients.md) for a full comparison.
+
 ---
 
 ## 5-minute quickstart
@@ -195,8 +197,24 @@ The `notebooklm-mcp` server is a third-party package. Review its license and sec
   extensions.json
 .devcontainer/
   devcontainer.json
+  README.md
 assets/
   social-preview.svg
+clients/
+  vscode/
+    mcp.json
+    copilot-instructions.example.md
+    README.md
+  opencode/
+    opencode.jsonc
+    agent-researcher.md
+    agent-architect.md
+    agent-presales.md
+    README.md
+  cursor/
+    mcp.json
+    rules/
+    README.md
 docs/
   setup.md
   usage.md
@@ -204,6 +222,8 @@ docs/
   operating-model.md
   enterprise-rollout.md
   faq.md
+  mcp-clients.md
+  devcontainer.md
 examples/
   prompts.md
   adr-from-notebooklm/
