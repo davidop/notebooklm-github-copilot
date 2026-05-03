@@ -1,0 +1,13 @@
+node_modules/
+.env
+.env.*
+*.log
+.DS_Store
+coverage/
+dist/
+.cache/
+
+# Never commit local browser/session material
+chrome_profile/
+notebooklm-mcp/
+.accounts/

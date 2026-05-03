@@ -1,0 +1,13 @@
+{
+  "chat.mcp.discovery.enabled": {
+    "claude-desktop": true,
+    "windsurf": true,
+    "cursor-global": true,
+    "cursor-workspace": true
+  },
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "files.associations": {
+    "*.prompt.md": "markdown",
+    "*.instructions.md": "markdown"
+  }
+}
