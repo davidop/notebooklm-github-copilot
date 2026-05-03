@@ -22,7 +22,7 @@
     "mcp:notebooklm": "npx notebooklm-mcp@latest",
     "mcp:notebooklm:http": "npx notebooklm-mcp@latest --transport http --port 3000",
     "pin:notebooklm": "node scripts/pin-notebooklm-version.mjs",
-    "lint:markdown": "npx markdownlint-cli2 \"**/*.md\" --ignore node_modules"
+    "lint:markdown": "npx markdownlint-cli2@0.14.0 \"**/*.md\" --ignore node_modules"
   },
   "engines": {
     "node": ">=18"
