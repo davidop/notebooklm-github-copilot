@@ -120,6 +120,90 @@ Consulta [SECURITY.md](SECURITY.md) y [security/threat-model.md](security/threat
 
 ---
 
+## Novedades en v0.3
+
+v0.3 convierte el repositorio en un kit de adopción enterprise, no sólo en un starter.
+
+| Área | Novedad |
+|---|---|
+| **Seguridad** | Guía de endurecimiento, modelo de amenazas MCP, seguridad del perfil del navegador |
+| **Privacidad** | Guía de tratamiento de datos, consideraciones de cumplimiento |
+| **Gobierno** | Plantillas de políticas, política de fuentes aprobadas, libro de jugadas de adopción por equipos |
+| **Flujos multi-notebook** | Consultas cruzadas entre cuadernos, triangulación de fuentes, resolución de conflictos |
+| **Paquetes de prompts por equipo** | Prompts listos para usar: ingeniería de plataforma, arquitectura cloud, preventa, seguridad, gestión de entregas, habilitación de desarrolladores |
+| **Marco de evaluación** | Rúbricas de puntuación para respuestas de arquitectura, propuestas de preventa y generación de código |
+| **Listas de verificación** | Checklists operativos para aprobación de servidores MCP, fuentes y despliegue enterprise |
+
+---
+
+## Adopción enterprise
+
+Para organizaciones que despliegan esto en múltiples desarrolladores:
+
+1. Lee el [libro de jugadas de adopción por equipos](governance/team-adoption-playbook.md).
+2. Completa la [lista de verificación de seguridad para despliegue enterprise](checklists/security/enterprise-rollout-security-checklist.md).
+3. Adapta las [plantillas de gobierno](governance/) a los requisitos de tu organización.
+4. Forma a los desarrolladores sobre [tratamiento de datos y privacidad](docs/privacy-and-data-handling.md).
+
+---
+
+## Endurecimiento de seguridad
+
+- [Guía de endurecimiento de seguridad](docs/security-hardening.md)
+- [Privacidad y tratamiento de datos](docs/privacy-and-data-handling.md)
+- [Consideraciones de cumplimiento normativo](docs/compliance-considerations.md)
+- [Seguridad del perfil del navegador](docs/browser-profile-security.md)
+- [Modelo de amenazas MCP](docs/mcp-threat-model.md)
+
+---
+
+## Gobierno y políticas
+
+Plantillas de políticas genéricas y reutilizables para equipos enterprise:
+
+- [Política de ingeniería asistida por IA](governance/ai-assisted-engineering-policy.md)
+- [Política de fuentes aprobadas](governance/approved-sources-policy.md)
+- [Política de uso de NotebookLM](governance/notebooklm-usage-policy.md)
+- [Gobierno de servidores MCP](governance/mcp-server-governance.md)
+- [Libro de jugadas de adopción por equipos](governance/team-adoption-playbook.md)
+
+---
+
+## Flujos multi-notebook
+
+Trabaja con varios cuadernos de NotebookLM especializados en un único flujo de trabajo:
+
+- [Guía de flujos multi-notebook](docs/multi-notebook-workflows.md)
+- [Investigación multi-notebook](recipes/multi-notebook-research.md)
+- [Triangulación de fuentes](recipes/source-triangulation.md)
+- [Resolución de conflictos entre fuentes](recipes/conflict-resolution-between-sources.md)
+
+---
+
+## Paquetes de prompts por equipo
+
+| Equipo | Paquete |
+|---|---|
+| Ingeniería de plataforma | [prompt-packs/team/platform-engineering.md](prompt-packs/team/platform-engineering.md) |
+| Arquitectura cloud | [prompt-packs/team/cloud-architecture.md](prompt-packs/team/cloud-architecture.md) |
+| Preventa | [prompt-packs/team/presales.md](prompt-packs/team/presales.md) |
+| Seguridad | [prompt-packs/team/security.md](prompt-packs/team/security.md) |
+| Gestión de entregas | [prompt-packs/team/delivery-management.md](prompt-packs/team/delivery-management.md) |
+| Habilitación de desarrolladores | [prompt-packs/team/developer-enablement.md](prompt-packs/team/developer-enablement.md) |
+
+---
+
+## Evaluación de calidad
+
+Rúbricas de puntuación para revisar la calidad de los outputs generados con asistencia de IA:
+
+- [Tarjeta de puntuación de fundamentación en fuentes](evals/source-grounding-scorecard.md)
+- [Evaluación de respuestas de arquitectura](evals/architecture-answer-evaluation.md)
+- [Evaluación de propuestas de preventa](evals/presales-output-evaluation.md)
+- [Evaluación de generación de código](evals/code-generation-from-docs-evaluation.md)
+
+---
+
 ## Contribuir
 
 Consulta [CONTRIBUTING.md](CONTRIBUTING.md). Las contribuciones son bienvenidas, especialmente nuevas recetas y ejemplos del mundo real.

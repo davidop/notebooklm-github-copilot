@@ -55,6 +55,24 @@ Other supported clients (OpenCode, Cursor) connect to the same `notebooklm-mcp` 
 
 ---
 
+## What changed in v0.3
+
+v0.3 adds enterprise rollout guidance, security hardening, governance templates, multi-notebook workflows, team prompt packs and an evaluation framework for source-grounded AI engineering.
+
+| Area | What's new |
+|---|---|
+| **Security hardening** | Threat model, privacy guide, compliance considerations, browser profile security |
+| **Governance** | Policy templates, approved sources policy, MCP server governance, team adoption playbook |
+| **Multi-notebook workflows** | Query patterns across multiple notebooks, conflict resolution, source triangulation |
+| **Team prompt packs** | Ready-to-use prompts for platform engineering, cloud architecture, presales, security, delivery and developer enablement |
+| **Evaluation framework** | Scoring rubrics for architecture answers, presales outputs, code generation, and security reviews |
+| **Security checklists** | Operational checklists for MCP server approval, source approval, browser profile management, and enterprise rollout |
+| **Quality validation** | New scripts: `check:links`, `check:recipes`, `check:prompts`, `check:frontmatter`, `docs:index` |
+
+See [CHANGELOG.md](CHANGELOG.md) for the full list.
+
+---
+
 ## 5-minute quickstart
 
 **Prerequisites:** GitHub Copilot, VS Code, Node.js 18+, Chrome stable, Google account with NotebookLM access.
@@ -164,6 +182,71 @@ See [docs/enterprise-rollout.md](docs/enterprise-rollout.md) for a full checklis
 
 ---
 
+## Security hardening
+
+See dedicated documentation for security, privacy and compliance:
+
+- [Security hardening guide](docs/security-hardening.md)
+- [Privacy and data handling](docs/privacy-and-data-handling.md)
+- [Compliance considerations](docs/compliance-considerations.md)
+- [Browser profile security](docs/browser-profile-security.md)
+- [MCP threat model](docs/mcp-threat-model.md)
+
+---
+
+## Governance templates
+
+Generic, reusable policy templates for enterprise teams adopting AI-assisted engineering:
+
+- [AI-assisted engineering policy](governance/ai-assisted-engineering-policy.md)
+- [Approved sources policy](governance/approved-sources-policy.md)
+- [NotebookLM usage policy](governance/notebooklm-usage-policy.md)
+- [MCP server governance](governance/mcp-server-governance.md)
+- [Team adoption playbook](governance/team-adoption-playbook.md)
+
+See [governance/](governance/) for the full collection.
+
+---
+
+## Evaluation framework
+
+Scoring rubrics and scenarios for reviewing the quality of AI-assisted engineering outputs:
+
+- [Source grounding scorecard](evals/source-grounding-scorecard.md)
+- [Architecture answer evaluation](evals/architecture-answer-evaluation.md)
+- [Presales output evaluation](evals/presales-output-evaluation.md)
+- [Code generation evaluation](evals/code-generation-from-docs-evaluation.md)
+
+See [evals/](evals/) for all rubrics and scenarios.
+
+---
+
+## Multi-notebook workflows
+
+Work with multiple specialized notebooks in a single workflow — combining customer requirements, internal standards, vendor docs, and prior proposals:
+
+- [Multi-notebook workflows guide](docs/multi-notebook-workflows.md)
+- [Multi-notebook research recipe](recipes/multi-notebook-research.md)
+- [Source triangulation](recipes/source-triangulation.md)
+- [Conflict resolution between sources](recipes/conflict-resolution-between-sources.md)
+
+---
+
+## Team prompt packs
+
+Copy-paste-ready prompt collections for specific teams and roles:
+
+| Team | Prompt pack |
+|---|---|
+| Platform engineering | [prompt-packs/team/platform-engineering.md](prompt-packs/team/platform-engineering.md) |
+| Cloud architecture | [prompt-packs/team/cloud-architecture.md](prompt-packs/team/cloud-architecture.md) |
+| Presales | [prompt-packs/team/presales.md](prompt-packs/team/presales.md) |
+| Security | [prompt-packs/team/security.md](prompt-packs/team/security.md) |
+| Delivery management | [prompt-packs/team/delivery-management.md](prompt-packs/team/delivery-management.md) |
+| Developer enablement | [prompt-packs/team/developer-enablement.md](prompt-packs/team/developer-enablement.md) |
+
+---
+
 ## Limitations
 
 - **Browser automation fragility** — `notebooklm-mcp` uses browser automation against the NotebookLM UI. Google UI changes can break it until the package is updated.
@@ -171,6 +254,9 @@ See [docs/enterprise-rollout.md](docs/enterprise-rollout.md) for a full checklis
 - **Authentication is per-developer** — No centralized service account for NotebookLM (Google does not expose a public API).
 - **NotebookLM source limits** — Notebooks have source count and size limits imposed by Google.
 - **Codespaces caveat** — Interactive browser authentication works best from a local VS Code environment, not GitHub Codespaces.
+- **Auditability gaps** — NotebookLM does not expose audit logs. Track notebook queries through your coding agent's conversation history.
+- **No centralized policy enforcement** — Governance templates are advisory. Enforcement depends on organizational controls.
+- **Evaluation framework is manual** — The evals/ rubrics require human reviewers. There is no automated grading.
 
 ---
 
@@ -235,6 +321,50 @@ prompts/
 recipes/
 security/
   threat-model.md
+governance/
+  README.md
+  ai-assisted-engineering-policy.md
+  approved-sources-policy.md
+  notebooklm-usage-policy.md
+  mcp-server-governance.md
+  prompt-and-output-review-policy.md
+  team-adoption-playbook.md
+  exception-request-template.md
+checklists/
+  README.md
+  security/
+    mcp-server-approval-checklist.md
+    notebooklm-source-approval-checklist.md
+    customer-data-review-checklist.md
+    browser-profile-checklist.md
+    prompt-injection-review-checklist.md
+    enterprise-rollout-security-checklist.md
+evals/
+  README.md
+  source-grounding-scorecard.md
+  architecture-answer-evaluation.md
+  presales-output-evaluation.md
+  code-generation-from-docs-evaluation.md
+  security-review-evaluation.md
+  rubric-template.md
+  scenarios/
+    adr-generation.md
+    azure-architecture-review.md
+    rfp-review.md
+    security-threat-model.md
+    code-from-vendor-docs.md
+prompt-packs/
+  README.md
+  team/
+    README.md
+    platform-engineering.md
+    cloud-architecture.md
+    presales.md
+    security.md
+    delivery-management.md
+    developer-enablement.md
+marketing/
+  v0.3-launch.md
 templates/
 scripts/
   validate.mjs
@@ -247,6 +377,27 @@ SUPPORT.md
 README.es.md
 package.json
 ```
+
+---
+
+## Recommended adoption path
+
+**New users:**
+1. Follow the [5-minute quickstart](#5-minute-quickstart)
+2. Pick a recipe from [recipes/](recipes/) that matches your workflow
+3. Review [docs/security-hardening.md](docs/security-hardening.md) before uploading documents
+
+**Teams adopting for the first time:**
+1. Read the [team adoption playbook](governance/team-adoption-playbook.md)
+2. Complete the [enterprise rollout security checklist](checklists/security/enterprise-rollout-security-checklist.md)
+3. Choose prompt packs from [prompt-packs/team/](prompt-packs/team/)
+4. Establish evaluation cadence using [evals/](evals/)
+
+**Enterprise / governed deployments:**
+1. Adapt the [governance templates](governance/) to your organization
+2. Complete the [MCP server approval checklist](checklists/security/mcp-server-approval-checklist.md)
+3. Set up approved notebook registry per [approved-sources-policy.md](governance/approved-sources-policy.md)
+4. Train developers on [privacy and data handling](docs/privacy-and-data-handling.md)
 
 ---
 
