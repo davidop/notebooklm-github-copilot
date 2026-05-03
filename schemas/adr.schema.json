@@ -1,0 +1,98 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/davidop/notebooklm-github-copilot/schemas/adr.schema.json",
+  "title": "Architecture Decision Record",
+  "description": "A record of a significant architectural decision made during a project.",
+  "type": "object",
+  "required": ["id", "title", "status", "date", "context", "decision", "rationale", "consequences"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier for the ADR (e.g. ADR-001)",
+      "pattern": "^ADR-[0-9]{3,}$"
+    },
+    "title": {
+      "type": "string",
+      "description": "Short descriptive title of the decision",
+      "minLength": 5,
+      "maxLength": 120
+    },
+    "status": {
+      "type": "string",
+      "description": "Current status of the ADR",
+      "enum": ["Proposed", "Accepted", "Deprecated", "Superseded", "Rejected"]
+    },
+    "date": {
+      "type": "string",
+      "description": "Date the decision was recorded (ISO 8601 format)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "deciders": {
+      "type": "array",
+      "description": "List of roles or names of people who made the decision",
+      "items": {
+        "type": "string"
+      }
+    },
+    "context": {
+      "type": "string",
+      "description": "Background and problem statement that led to this decision",
+      "minLength": 20
+    },
+    "decision": {
+      "type": "string",
+      "description": "The decision that was made",
+      "minLength": 10
+    },
+    "rationale": {
+      "type": "string",
+      "description": "Why this decision was made over alternatives",
+      "minLength": 10
+    },
+    "alternatives": {
+      "type": "array",
+      "description": "Alternative options that were considered",
+      "items": {
+        "type": "object",
+        "required": ["option", "reason_rejected"],
+        "properties": {
+          "option": { "type": "string" },
+          "reason_rejected": { "type": "string" }
+        }
+      }
+    },
+    "consequences": {
+      "type": "object",
+      "description": "Positive and negative consequences of the decision",
+      "required": ["positive", "negative"],
+      "properties": {
+        "positive": {
+          "type": "array",
+          "items": { "type": "string" },
+          "minItems": 1
+        },
+        "negative": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "implementation_tasks": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "sources": {
+      "type": "array",
+      "description": "NotebookLM source documents cited in this ADR",
+      "items": {
+        "type": "string"
+      }
+    },
+    "supersedes": {
+      "type": "string",
+      "description": "ID of the ADR this decision supersedes, if applicable",
+      "pattern": "^ADR-[0-9]{3,}$"
+    }
+  },
+  "additionalProperties": false
+}

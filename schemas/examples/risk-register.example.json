@@ -1,0 +1,63 @@
+{
+  "milestone": "Phase 2 go-live",
+  "date": "2024-11-15",
+  "sources": [
+    "architecture-principles.md",
+    "security-requirements.md §3, §4, §6, §7",
+    "customer-meeting-notes.md §Open questions",
+    "vendor-implementation-guide.md §6"
+  ],
+  "risks": [
+    {
+      "id": "RISK-001",
+      "title": "EU data residency scope unresolved for backup storage",
+      "description": "Customer has not confirmed whether EU data residency applies to backup storage volumes. If the requirement applies, the current architecture does not comply and a redesign will be required before go-live.",
+      "likelihood": "High",
+      "impact": "High",
+      "score": "Critical",
+      "type": "Compliance risk",
+      "mitigations": [
+        "Schedule clarification call with customer by 2024-11-15",
+        "Prepare two architecture options (residency in-scope vs. out-of-scope)",
+        "Do not release the backup service until confirmed"
+      ],
+      "owner_role": "solution-architect",
+      "source": "customer-meeting-notes.md §Open questions; security-requirements.md §7.1",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-002",
+      "title": "mTLS certificate rotation mechanism not designed",
+      "description": "ADR-001 requires mTLS for all inter-service communication but the certificate rotation mechanism has not been designed. Manual rotation creates operational risk and potential for service disruption.",
+      "likelihood": "Medium",
+      "impact": "High",
+      "score": "High",
+      "type": "Architecture risk",
+      "mitigations": [
+        "Design cert-manager integration in sprint 15",
+        "Add certificate rotation test to the Definition of Done",
+        "Include rotation runbook in the go-live checklist"
+      ],
+      "owner_role": "platform-engineer",
+      "source": "vendor-implementation-guide.md §3.2; security-requirements.md §3.2",
+      "status": "Open"
+    },
+    {
+      "id": "RISK-003",
+      "title": "Penetration test vendor selection timeline",
+      "description": "The customer's procurement process for the pen test vendor takes approximately 6 weeks. If selection is not initiated by end of Month 2, the test cannot be completed before the Phase 2 go-live target.",
+      "likelihood": "Medium",
+      "impact": "High",
+      "score": "High",
+      "type": "Delivery risk",
+      "mitigations": [
+        "Initiate pen test vendor selection no later than 2024-11-30",
+        "Identify a backup vendor in case primary selection is delayed",
+        "Flag to Programme Sponsor if timeline slips"
+      ],
+      "owner_role": "security-lead",
+      "source": "security-requirements.md §6.1; customer-meeting-notes.md §Security",
+      "status": "Open"
+    }
+  ]
+}

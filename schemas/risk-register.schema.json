@@ -1,0 +1,96 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/davidop/notebooklm-github-copilot/schemas/risk-register.schema.json",
+  "title": "Risk Register",
+  "description": "A delivery risk register generated from NotebookLM sources.",
+  "type": "object",
+  "required": ["milestone", "date", "risks"],
+  "properties": {
+    "milestone": {
+      "type": "string",
+      "description": "The milestone or release this risk register covers",
+      "minLength": 2
+    },
+    "date": {
+      "type": "string",
+      "description": "Date the risk register was produced (ISO 8601 format)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "sources": {
+      "type": "array",
+      "description": "NotebookLM source documents used to identify risks",
+      "items": { "type": "string" }
+    },
+    "risks": {
+      "type": "array",
+      "description": "Array of identified delivery risks",
+      "items": {
+        "type": "object",
+        "required": ["id", "title", "description", "likelihood", "impact", "score", "mitigations", "owner_role", "source"],
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique risk identifier (e.g. RISK-001)",
+            "pattern": "^RISK-[0-9]{3,}$"
+          },
+          "title": {
+            "type": "string",
+            "description": "Short risk title",
+            "minLength": 5,
+            "maxLength": 100
+          },
+          "description": {
+            "type": "string",
+            "description": "Detailed description of what could go wrong and why",
+            "minLength": 20
+          },
+          "likelihood": {
+            "type": "string",
+            "description": "Assessed likelihood of the risk occurring",
+            "enum": ["High", "Medium", "Low"]
+          },
+          "impact": {
+            "type": "string",
+            "description": "Assessed impact if the risk occurs",
+            "enum": ["High", "Medium", "Low"]
+          },
+          "score": {
+            "type": "string",
+            "description": "Calculated risk score from likelihood × impact",
+            "enum": ["Critical", "High", "Medium", "Low"]
+          },
+          "type": {
+            "type": "string",
+            "description": "Category of risk",
+            "enum": ["Architecture risk", "Security risk", "Compliance risk", "Delivery risk", "External dependency", "Resource risk", "Technical debt"]
+          },
+          "mitigations": {
+            "type": "array",
+            "description": "Specific actionable mitigation steps",
+            "items": { "type": "string" },
+            "minItems": 1
+          },
+          "owner_role": {
+            "type": "string",
+            "description": "Role responsible for managing this risk (not a personal name)",
+            "minLength": 2
+          },
+          "source": {
+            "type": "string",
+            "description": "NotebookLM source document that evidences this risk",
+            "minLength": 3
+          },
+          "status": {
+            "type": "string",
+            "description": "Current status of the risk",
+            "enum": ["Open", "Mitigated", "Accepted", "Closed"],
+            "default": "Open"
+          }
+        },
+        "additionalProperties": false
+      },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

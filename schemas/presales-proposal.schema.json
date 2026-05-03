@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/davidop/notebooklm-github-copilot/schemas/presales-proposal.schema.json",
+  "title": "Presales Proposal Section",
+  "description": "A structured presales proposal section generated from NotebookLM sources.",
+  "type": "object",
+  "required": ["title", "version", "engagement_overview", "key_constraints", "proposed_approach", "risk_summary"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the proposal or section",
+      "minLength": 5,
+      "maxLength": 200
+    },
+    "version": {
+      "type": "string",
+      "description": "Document version (e.g. 1.0, 2.1-draft)",
+      "minLength": 1
+    },
+    "date": {
+      "type": "string",
+      "description": "Date of the proposal (ISO 8601 format)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "sources": {
+      "type": "array",
+      "description": "NotebookLM source documents used to generate this proposal section",
+      "items": { "type": "string" }
+    },
+    "engagement_overview": {
+      "type": "string",
+      "description": "Brief summary of the engagement context and scope",
+      "minLength": 20
+    },
+    "key_constraints": {
+      "type": "array",
+      "description": "Non-negotiable constraints grounded in source documents",
+      "items": {
+        "type": "object",
+        "required": ["constraint", "source"],
+        "properties": {
+          "constraint": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      },
+      "minItems": 1
+    },
+    "proposed_approach": {
+      "type": "object",
+      "description": "The proposed delivery approach",
+      "required": ["summary", "phases"],
+      "properties": {
+        "summary": { "type": "string" },
+        "phases": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "description"],
+            "properties": {
+              "name": { "type": "string" },
+              "description": { "type": "string" },
+              "duration": { "type": "string" }
+            }
+          },
+          "minItems": 1
+        }
+      }
+    },
+    "risk_summary": {
+      "type": "array",
+      "description": "Top delivery risks with likelihood, impact, and mitigation",
+      "items": {
+        "type": "object",
+        "required": ["title", "likelihood", "impact", "mitigation", "source"],
+        "properties": {
+          "title": { "type": "string" },
+          "likelihood": {
+            "type": "string",
+            "enum": ["High", "Medium", "Low"]
+          },
+          "impact": {
+            "type": "string",
+            "enum": ["High", "Medium", "Low"]
+          },
+          "mitigation": { "type": "string" },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "next_steps": {
+      "type": "array",
+      "description": "Agreed next steps",
+      "items": { "type": "string" }
+    }
+  },
+  "additionalProperties": false
+}
