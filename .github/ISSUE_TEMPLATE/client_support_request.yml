@@ -1,0 +1,78 @@
+name: Client Support Request
+description: Request support for a new MCP-compatible client or IDE
+labels: ["client-support", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request support for a new MCP-compatible AI coding assistant or IDE. This project currently documents setup for GitHub Copilot, OpenCode, and Cursor. If you use a different client and want to see it supported, describe it here. Do not include proprietary configuration files or internal tooling details.
+
+  - type: input
+    id: client-name
+    attributes:
+      label: Client name and version
+      description: What is the name and version of the client you want supported?
+      placeholder: "e.g. Continue.dev v0.9, Zed v0.140, Windsurf v1.2"
+    validations:
+      required: true
+
+  - type: textarea
+    id: mcp-config
+    attributes:
+      label: How this client configures MCP servers
+      description: Describe how this client discovers and connects to MCP servers. Include the general mechanism (e.g. config file, UI settings, environment variable).
+      placeholder: "e.g. The client reads an mcp.json file in the project root with a servers array."
+    validations:
+      required: true
+
+  - type: textarea
+    id: config-format
+    attributes:
+      label: Configuration files or formats
+      description: Describe or show an example of the configuration file format (sanitised, no secrets).
+      render: json
+      placeholder: |
+        {
+          "servers": [
+            {
+              "name": "notebooklm",
+              "transport": "sse",
+              "url": "http://localhost:3000/sse"
+            }
+          ]
+        }
+
+  - type: textarea
+    id: what-works
+    attributes:
+      label: What already works
+      description: If you have already tried connecting this client to NotebookLM via MCP, describe what works.
+      placeholder: "e.g. The client discovers the server and lists tools, but tool calls return an error."
+
+  - type: textarea
+    id: what-is-missing
+    attributes:
+      label: What is missing or broken
+      description: Describe what does not work or what documentation is missing.
+      placeholder: "e.g. There is no setup guide for this client in the docs/clients/ folder."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: The client I am requesting support for is publicly available (not internal-only tooling).
+          required: true
+        - label: I have not included any proprietary configuration, internal URLs, or credentials.
+          required: true
+        - label: I am willing to help test a draft setup guide for this client.
+          required: true
+
+  - type: textarea
+    id: docs-links
+    attributes:
+      label: Links to client documentation
+      description: Links to the client's MCP documentation or configuration reference.
+      placeholder: "e.g. https://docs.example-client.dev/mcp-setup"

@@ -1,0 +1,66 @@
+name: Governance Request
+description: Request a new governance template, policy, or guidance
+labels: ["governance", "documentation"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request a new governance template, policy document, checklist, or team adoption guidance for the NotebookLM + MCP workflow. All contributions must be generic and reusable — do not include confidential organisational data or proprietary policy text.
+
+  - type: dropdown
+    id: request-type
+    attributes:
+      label: Request type
+      description: What kind of governance asset are you requesting?
+      options:
+        - New policy template
+        - Update existing policy
+        - New checklist
+        - Exception request guidance
+        - Team adoption guidance
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description of governance need
+      description: Describe the governance gap or requirement. What is missing, and why is it needed?
+      placeholder: "e.g. We need a policy template for approving new NotebookLM notebooks that contain project documentation."
+    validations:
+      required: true
+
+  - type: textarea
+    id: org-context
+    attributes:
+      label: Organisation context
+      description: Describe the type of organisation or team context where this governance would apply. Keep this generic — do not include confidential or identifying information.
+      placeholder: "e.g. Mid-size software consultancy, regulated financial services team, public sector delivery team"
+
+  - type: textarea
+    id: outcome
+    attributes:
+      label: Desired outcome
+      description: What should the governance template or guidance enable someone to do?
+      placeholder: "e.g. A platform team should be able to use this template to evaluate whether a new notebook meets their data handling standards."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This request does not contain confidential organisational data or proprietary policy text.
+          required: true
+        - label: I am not claiming affiliation with Google, GitHub, Microsoft, OpenAI, Anthropic, Cursor, or OpenCode.
+          required: true
+        - label: The content I am requesting is generic and reusable by any organisation.
+          required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context, links to related issues or PRs, or examples of similar governance documents.

@@ -1,0 +1,68 @@
+name: Security Review Request
+description: Request a security review of a configuration, notebook, or workflow
+labels: ["security", "review"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request a security review before deploying a new MCP server configuration, adding sources to a notebook, or rolling out a NotebookLM workflow to a team. Do **not** include secrets, credentials, API keys, or customer PII in this issue.
+
+  - type: dropdown
+    id: review-type
+    attributes:
+      label: Review type
+      description: What kind of security review do you need?
+      options:
+        - MCP server review
+        - NotebookLM source review
+        - Browser profile review
+        - Prompt injection review
+        - Enterprise rollout review
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: Describe what needs to be reviewed. What is it, and why are you requesting a review?
+      placeholder: "e.g. We are adding a new MCP server that connects to an internal Confluence instance. We need a review before enabling it for the team."
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Current configuration or setup
+      description: Paste the relevant configuration (no secrets). Use a code block.
+      render: yaml
+      placeholder: |
+        # Paste sanitised configuration here — remove all secrets, tokens, and credentials before submitting.
+
+  - type: textarea
+    id: data-types
+    attributes:
+      label: Data types involved
+      description: What kinds of documents or data will be loaded into or processed by this workflow?
+      placeholder: "e.g. Internal architecture documents, anonymised meeting notes, public product documentation"
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This issue does not contain any secrets, credentials, API keys, or tokens.
+          required: true
+        - label: This issue does not contain any customer PII or personally identifiable information.
+          required: true
+        - label: I am willing to provide additional detail or answer follow-up questions from reviewers.
+          required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context, links to related PRs, or background information.

@@ -9,7 +9,19 @@ const requiredFiles = [
   'docs/setup.md',
   'docs/usage.md',
   'security/threat-model.md',
-  'package.json'
+  'package.json',
+  'docs/security-hardening.md',
+  'docs/privacy-and-data-handling.md',
+  'docs/compliance-considerations.md',
+  'docs/browser-profile-security.md',
+  'docs/mcp-threat-model.md',
+  'docs/multi-notebook-workflows.md',
+  'governance/README.md',
+  'governance/ai-assisted-engineering-policy.md',
+  'evals/README.md',
+  'evals/source-grounding-scorecard.md',
+  'checklists/security/enterprise-rollout-security-checklist.md',
+  'prompt-packs/team/README.md',
 ];
 
 function fail(message) {

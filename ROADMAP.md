@@ -30,25 +30,31 @@ This roadmap describes the planned evolution of this project. It is aspirational
 
 ---
 
-## v0.3 — Enterprise readiness
+## v0.3 — Enterprise readiness ✅
 
-- Enterprise rollout guide (expanded)
-- Security hardening checklist
-- Multi-notebook workflows (query across multiple notebooks in one session)
-- Prompt packs for architecture and presales teams
-- Integration guidance for GitHub Copilot Business and Enterprise
-- Localized documentation (at least one additional language)
+- Security hardening documentation (5 docs: security hardening, privacy and data handling, compliance considerations, browser profile security, MCP threat model)
+- Security checklist pack (6 checklists in `checklists/security/`)
+- Governance templates (8 policy templates in `governance/`)
+- Multi-notebook workflow guidance (`docs/multi-notebook-workflows.md` + 4 recipes)
+- Team prompt packs (6 team-specific packs in `prompt-packs/team/`)
+- Evaluation framework (rubrics + scenarios in `evals/`)
+- Quality validation scripts (`check:links`, `check:recipes`, `check:prompts`, `check:frontmatter`, `docs:index`)
+- Documentation indexes for all major folders
+- GitHub issue templates and improved PR template
+- GitHub Actions quality gates (`validate.yml` runs `check:repo`; new `docs-index.yml`)
 
 ---
 
-## v1.0 — Stable and community-driven
+## v0.4 — Demo, community and integrations
 
-- Stable configuration templates with semantic versioning
-- Real-world worked examples contributed by the community
+- Demo videos and animated walkthroughs
 - Community-contributed recipes with review process
-- Documented governance model
-- Comprehensive test coverage for validation scripts
-- Long-term support (LTS) guidance
+- Optional setup wizard
+- Optional client config generator
+- Integration examples with Azure DevOps and GitHub Issues
+- Advanced evaluation examples with automated scoring
+- Published website or GitHub Pages documentation
+- HTTP transport mode examples
 
 ---
 
@@ -58,6 +64,9 @@ This roadmap describes the planned evolution of this project. It is aspirational
 - Integration with Azure DevOps (instead of / alongside GitHub)
 - Support for other notebook-style RAG tools via MCP
 - Automated notebook health checks
+- Community evaluation leaderboard
+- Multi-language prompt packs
+- Integration with GitHub Copilot Extensions API
 
 ---
 

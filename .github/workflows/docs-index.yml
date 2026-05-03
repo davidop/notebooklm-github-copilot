@@ -1,0 +1,36 @@
+name: Docs index check
+
+on:
+  pull_request:
+    paths:
+      - 'docs/**'
+      - 'governance/**'
+      - 'evals/**'
+      - 'checklists/**'
+
+jobs:
+  check-docs-index:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Regenerate docs index
+        run: node scripts/generate-doc-index.mjs
+
+      - name: Check for uncommitted changes to docs/index.md
+        run: |
+          if ! git diff --exit-code docs/index.md; then
+            echo "docs/index.md is out of date. Run 'npm run docs:index' and commit the result."
+            exit 1
+          fi
