@@ -45,16 +45,37 @@ This roadmap describes the planned evolution of this project. It is aspirational
 
 ---
 
-## v0.4 — Demo, community and integrations
+## v0.4 — Adoption-ready product experience ✅
 
-- Demo videos and animated walkthroughs
-- Community-contributed recipes with review process
-- Optional setup wizard
-- Optional client config generator
-- Integration examples with Azure DevOps and GitHub Issues
-- Advanced evaluation examples with automated scoring
-- Published website or GitHub Pages documentation
-- HTTP transport mode examples
+- Setup wizard (`npm run setup:wizard`) for VS Code, OpenCode and Cursor
+- Non-interactive client config generator
+- Doctor command for local readiness checks
+- GitHub Issues integration recipes (5 workflows)
+- Azure DevOps integration recipes (5 workflows)
+- Demo kit with 2/5/15-min scripts, sample outputs and recording checklist
+- GitHub Pages documentation site (`site/`)
+- Fictional sample sources for safe demos
+- Output schemas (JSON Schema 2020-12) for ADRs, backlog, risk register, proposals
+- Output format prompt packs
+- Adoption maturity model (5 levels)
+- Client configuration matrix
+- Improved validation: `check:schemas`, `check:site`, updated `check:repo`
+- Marketing launch material
+
+---
+
+## v0.5 — Community, polish and advanced validation
+
+- Optional local UI for configuration and setup
+- Community gallery of recipes with contribution process
+- MCP client compatibility test suite
+- Advanced schema-based output validation helpers
+- Richer demo video examples and animated walkthroughs
+- Optional GitHub Actions issue generation example (safe, local-only)
+- Website polish and improved GitHub Pages theme
+- Multi-language support improvements (French, German, Japanese)
+- Telemetry-free usage analytics template for enterprise tracking
+- HTTP transport mode examples and documentation
 
 ---
 
@@ -67,6 +88,8 @@ This roadmap describes the planned evolution of this project. It is aspirational
 - Community evaluation leaderboard
 - Multi-language prompt packs
 - Integration with GitHub Copilot Extensions API
+- Advanced schema-based output validation
+- Localization improvements for more languages
 
 ---
 

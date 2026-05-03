@@ -204,6 +204,154 @@ Rúbricas de puntuación para revisar la calidad de los outputs generados con as
 
 ---
 
+## Novedades en v0.4
+
+v0.4 convierte el repositorio en un producto listo para demostrar, configurar y adoptar en equipo.
+
+| Área | Novedad |
+|---|---|
+| **Asistente de configuración** | `npm run setup:wizard` — genera configuración MCP para VS Code, OpenCode, Cursor o clientes genéricos |
+| **Generador de configuración** | Comandos no interactivos: `setup:vscode`, `setup:opencode`, `setup:cursor` |
+| **Comando doctor** | `npm run doctor` — comprueba Node.js, npm, Chrome, archivos de configuración y scripts |
+| **Kit de demo** | Scripts de 2, 5 y 15 minutos, salidas de ejemplo, checklist de grabación en `demo/` |
+| **Recetas de integración** | Flujos de trabajo para GitHub Issues y Azure DevOps en `integrations/` |
+| **Fuentes de ejemplo** | Documentos ficticios y seguros para demos en `sample-sources/` |
+| **Esquemas de salida** | Definiciones JSON Schema para ADRs, backlog, registros de riesgo y propuestas |
+| **Prompts de formato de salida** | Paquetes de prompts estructurados en `prompt-packs/output-formats/` |
+| **Modelo de madurez de adopción** | Marco de 5 niveles en `docs/adoption-maturity-model.md` |
+| **Documentación GitHub Pages** | Sitio estático en `site/` con `_config.yml` |
+| **Validación mejorada** | `check:schemas`, `check:site` añadidos a `check:repo` |
+
+---
+
+## Asistente de configuración
+
+El asistente de configuración genera los archivos de configuración MCP sin editar JSON manualmente:
+
+```bash
+npm run setup:wizard                                     # interactivo
+npm run setup:vscode                                     # VS Code / GitHub Copilot
+npm run setup:opencode                                   # OpenCode
+npm run setup:cursor                                     # Cursor
+npm run setup:wizard -- --client vscode --version 0.1.0 # versión fijada
+```
+
+Consulta [docs/setup-wizard.md](docs/setup-wizard.md) para la documentación completa.
+
+---
+
+## Comando doctor
+
+Comprueba tu entorno local antes de empezar:
+
+```bash
+npm run doctor
+```
+
+Verifica la versión de Node.js, npm/npx, estructura del repositorio, archivos de configuración, scripts de paquete y detección opcional de Chrome. Proporciona sugerencias de resolución para cada problema.
+
+Consulta [docs/doctor.md](docs/doctor.md) para más detalles.
+
+---
+
+## Kit de demo
+
+Todo lo necesario para grabar una demo sin datos confidenciales:
+
+- [README del kit](demo/README.md) — Descripción general y requisitos previos
+- [Script de 2 minutos](demo/demo-script-2-min.md) — Demo de introducción rápida
+- [Script de 5 minutos](demo/demo-script-5-min.md) — Demo estándar para equipos
+- [Script de 15 minutos](demo/demo-script-15-min.md) — Demo técnica en profundidad
+- [Prompts de ejemplo](demo/sample-prompts.md) — Prompts listos para pegar
+- [Checklist de grabación](demo/recording-checklist.md) — Guía antes, durante y después de grabar
+
+---
+
+## Fuentes de ejemplo
+
+Documentos ficticios seguros para subir a NotebookLM en demos:
+
+> **Aviso:** Estos archivos son fuentes de demo ficticias y no representan a ningún cliente real.
+
+| Archivo | Descripción |
+|---|---|
+| [cloud-modernization-brief.md](sample-sources/cloud-modernization-brief.md) | Briefing de modernización cloud ficticio |
+| [architecture-principles.md](sample-sources/architecture-principles.md) | Principios de arquitectura ficticios |
+| [security-requirements.md](sample-sources/security-requirements.md) | Requisitos de seguridad ficticios |
+| [customer-meeting-notes.md](sample-sources/customer-meeting-notes.md) | Notas de reunión ficticias |
+| [vendor-implementation-guide.md](sample-sources/vendor-implementation-guide.md) | Guía de proveedor ficticia |
+| [previous-proposal-summary.md](sample-sources/previous-proposal-summary.md) | Resumen de propuesta ficticia anterior |
+
+---
+
+## Recetas de integración
+
+Flujos de trabajo basados en prompts para GitHub Issues y Azure DevOps:
+
+**GitHub Issues:**
+
+| Receta | Descripción |
+|---|---|
+| [Crear issues](integrations/github/recipes/create-issues-from-notebooklm.md) | Convierte salidas de NotebookLM en GitHub Issues |
+| [Triaje de issues](integrations/github/recipes/triage-issues-with-notebooklm.md) | Fundamenta el triaje en tu base de conocimiento |
+| [Descripción de PR](integrations/github/recipes/generate-pr-description.md) | Genera descripciones de pull request fundamentadas |
+| [Notas de versión](integrations/github/recipes/generate-release-notes.md) | Crea notas de versión desde fuentes de NotebookLM |
+| [ADR a Issues](integrations/github/recipes/adr-to-github-issues.md) | Convierte ADRs en GitHub Issues trazables |
+
+**Azure DevOps:**
+
+| Receta | Descripción |
+|---|---|
+| [Work items de notas](integrations/azure-devops/recipes/create-work-items-from-meeting-notes.md) | Crea work items desde notas de reunión |
+| [Épicas, características, historias](integrations/azure-devops/recipes/epics-features-user-stories.md) | Genera jerarquía de backlog desde requisitos |
+| [Criterios de aceptación](integrations/azure-devops/recipes/generate-acceptance-criteria.md) | Genera criterios de aceptación fundamentados |
+| [Planificación de sprint](integrations/azure-devops/recipes/sprint-planning-from-notebooklm.md) | Planifica sprints usando fuentes de NotebookLM |
+| [Revisión de riesgos](integrations/azure-devops/recipes/delivery-risk-review.md) | Revisa riesgos de entrega con contexto de NotebookLM |
+
+---
+
+## Esquemas de salida
+
+Definiciones JSON Schema para outputs estructurados de IA:
+
+| Esquema | Descripción |
+|---|---|
+| [adr.schema.json](schemas/adr.schema.json) | Architecture Decision Record |
+| [backlog-items.schema.json](schemas/backlog-items.schema.json) | Elementos de backlog de sprint |
+| [risk-register.schema.json](schemas/risk-register.schema.json) | Registro de riesgos |
+| [presales-proposal.schema.json](schemas/presales-proposal.schema.json) | Propuesta de preventa |
+
+---
+
+## Modelo de madurez de adopción
+
+Marco de cinco niveles para adoptar NotebookLM + MCP en equipos:
+
+| Nivel | Etapa |
+|---|---|
+| 0 | Experimentos locales ad hoc |
+| 1 | Configuración individual del desarrollador |
+| 2 | Prompts y recetas compartidos por el equipo |
+| 3 | Despliegue enterprise gobernado |
+| 4 | Flujos evaluados y mejorados continuamente |
+
+Consulta [docs/adoption-maturity-model.md](docs/adoption-maturity-model.md) para el modelo completo.
+
+---
+
+## Documentación GitHub Pages
+
+La carpeta `site/` contiene un sitio de documentación estático compatible con GitHub Pages:
+
+- [Inicio rápido](site/getting-started.md)
+- [Configuración de clientes](site/clients.md)
+- [Resumen de recetas](site/recipes.md)
+- [Seguridad](site/security.md)
+- [Gobierno](site/governance.md)
+- [Preguntas frecuentes](site/faq.md)
+
+---
+
 ## Contribuir
 
 Consulta [CONTRIBUTING.md](CONTRIBUTING.md). Las contribuciones son bienvenidas, especialmente nuevas recetas y ejemplos del mundo real.

@@ -39,9 +39,10 @@ function parseArgs(argv) {
 
 function extractVersionSection(changelog, version) {
   const normalized = version.replace(/^v/, '');
+  const escaped = normalized.replace(/\./g, '\\.');
   // Match section headings like ## [0.4.0] or ## v0.4.0 or ## 0.4.0
   const headerPattern = new RegExp(
-    `^##\\s+(?:\\[?v?${normalized.replace('.', '\\.').replace('.', '\\.')}\\]?|v?${normalized.replace('.', '\\.').replace('.', '\\.')})`,
+    `^##\\s+(?:\\[?v?${escaped}\\]?|v?${escaped})`,
     'mi'
   );
 
