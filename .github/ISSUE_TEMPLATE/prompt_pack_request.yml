@@ -1,0 +1,73 @@
+name: Prompt Pack Request
+description: Request a new team prompt pack or improvement to an existing one
+labels: ["prompt-pack", "enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this template to request a new prompt pack for a team or role, or to suggest improvements to an existing pack in `prompt-packs/team/`. Prompt packs are copy-paste-ready collections of prompts for using GitHub Copilot, OpenCode, or Cursor with Google NotebookLM. All prompts must be generic — do not include proprietary workflows, confidential project names, or customer data.
+
+  - type: input
+    id: team-or-role
+    attributes:
+      label: Team or role
+      description: What team or role is this prompt pack for?
+      placeholder: "e.g. DevOps team, Data engineering, Security operations, Site reliability engineering"
+    validations:
+      required: true
+
+  - type: textarea
+    id: common-workflows
+    attributes:
+      label: Common workflows
+      description: Describe the common workflows this team performs that would benefit from NotebookLM-backed prompts.
+      placeholder: "e.g. Reviewing runbooks before incidents, generating IaC from architecture docs, creating post-incident reports from meeting notes"
+    validations:
+      required: true
+
+  - type: textarea
+    id: typical-sources
+    attributes:
+      label: Typical NotebookLM sources
+      description: What kinds of documents would this team typically load into a NotebookLM notebook?
+      placeholder: "e.g. Runbooks, architecture diagrams (as text), RFC documents, incident reports, ADRs"
+
+  - type: textarea
+    id: example-prompts
+    attributes:
+      label: Example prompts
+      description: Provide example prompts this team would use. Make them generic and copy-paste ready.
+      placeholder: |
+        1. "In the <notebook-name> notebook, list the runbook steps for <incident-type> with citations."
+        2. "Using the architecture docs in <notebook-name>, generate a Terraform module for <resource-type>."
+
+  - type: dropdown
+    id: recommended-client
+    attributes:
+      label: Recommended client
+      description: Which AI coding assistant is this pack primarily designed for?
+      options:
+        - GitHub Copilot
+        - OpenCode
+        - Cursor
+        - Any
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: confirmations
+    attributes:
+      label: Confirmations
+      options:
+        - label: This request does not contain confidential data, customer names, or proprietary workflows.
+          required: true
+        - label: The example prompts are generic and safe to publish in an open-source repository.
+          required: true
+        - label: I am willing to contribute the prompt pack as a pull request or collaborate with a maintainer to produce it.
+          required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional context
+      description: Any other context, links to related prompt packs, or examples from other tools.

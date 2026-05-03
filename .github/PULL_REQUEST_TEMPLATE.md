@@ -6,19 +6,26 @@
 
 - [ ] Bug fix
 - [ ] New recipe
-- [ ] New example
-- [ ] New template
+- [ ] New prompt pack
+- [ ] New governance template
+- [ ] New eval/scenario
+- [ ] Security/checklist update
 - [ ] Documentation improvement
 - [ ] Configuration change
+- [ ] Script/automation update
 - [ ] Other: <!-- describe -->
 
 ## Checklist
 
-- [ ] I have run `npm run validate` and it passes.
-- [ ] I have tested the changes locally (where applicable).
-- [ ] I have updated relevant documentation.
-- [ ] I have not included any secrets, credentials, or real customer data.
-- [ ] My changes do not vendor or fork NotebookLM automation code.
+- [ ] No confidential data (secrets, credentials, customer data, or PII) is included in this PR.
+- [ ] No claims of official affiliation with Google, GitHub, Microsoft, OpenAI, Anthropic, Cursor, or OpenCode.
+- [ ] Internal relative links checked (or run `npm run check:links`).
+- [ ] `npm run validate` passes.
+- [ ] `npm run check:repo` passes (if scripts were modified).
+- [ ] Recipes and prompts include all required sections (Goal, Steps, Prompts, Output).
+- [ ] Security and privacy implications have been considered and documented if applicable.
+- [ ] Documentation has been updated to reflect the changes.
+- [ ] CHANGELOG.md updated if this is a notable change.
 - [ ] I have read [CONTRIBUTING.md](CONTRIBUTING.md).
 
 ## Related issues
