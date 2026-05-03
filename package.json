@@ -1,6 +1,6 @@
 {
   "name": "notebooklm-github-copilot",
-  "version": "0.1.0",
+  "version": "0.3.0",
   "private": true,
   "description": "Connect GitHub Copilot with NotebookLM through MCP for source-grounded coding, architecture, and presales workflows.",
   "type": "module",
@@ -22,7 +22,13 @@
     "mcp:notebooklm": "npx notebooklm-mcp@latest",
     "mcp:notebooklm:http": "npx notebooklm-mcp@latest --transport http --port 3000",
     "pin:notebooklm": "node scripts/pin-notebooklm-version.mjs",
-    "lint:markdown": "npx markdownlint-cli2@0.14.0 \"**/*.md\" --ignore node_modules"
+    "lint:markdown": "npx markdownlint-cli2@0.14.0 \"**/*.md\" --ignore node_modules",
+    "check:links": "node scripts/check-links.mjs",
+    "check:recipes": "node scripts/check-recipes.mjs",
+    "check:prompts": "node scripts/check-prompts.mjs",
+    "check:frontmatter": "node scripts/check-frontmatter.mjs",
+    "docs:index": "node scripts/generate-doc-index.mjs",
+    "check:repo": "npm run validate && npm run check:links && npm run check:recipes && npm run check:prompts && npm run check:frontmatter"
   },
   "engines": {
     "node": ">=18"
