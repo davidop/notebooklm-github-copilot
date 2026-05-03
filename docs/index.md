@@ -9,6 +9,7 @@ Auto-generated index of key documentation in this repository.
 - [Devcontainer](devcontainer.md)
 - [Enterprise Rollout](enterprise-rollout.md)
 - [Faq](faq.md)
+- [Github Topics](github-topics.md)
 - [Mcp Clients](mcp-clients.md)
 - [Mcp Threat Model](mcp-threat-model.md)
 - [Multi Notebook Workflows](multi-notebook-workflows.md)
@@ -47,6 +48,7 @@ Auto-generated index of key documentation in this repository.
 
 ## Security Checklists
 
+- [README](../checklists/README.md)
 - [Browser Profile Checklist](../checklists/security/browser-profile-checklist.md)
 - [Customer Data Review Checklist](../checklists/security/customer-data-review-checklist.md)
 - [Enterprise Rollout Security Checklist](../checklists/security/enterprise-rollout-security-checklist.md)

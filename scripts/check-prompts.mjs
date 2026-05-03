@@ -6,13 +6,14 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const PROMPTS_DIR = join(ROOT, 'prompt-packs');
 
+// Patterns handle both singular and plural forms, and common section title variations.
 const REQUIRED_SECTIONS = [
   { label: 'Team profile / Profile', pattern: /\bteam\s+profile\b|\bprofile\b/i },
-  { label: 'Workflow', pattern: /\bworkflow\b/i },
+  { label: 'Workflow', pattern: /\bworkflows?\b/i },
   { label: 'NotebookLM', pattern: /\bnotebooklm\b/i },
   { label: 'Prompt', pattern: /\bprompt/i },
   { label: 'Quality / Checklist', pattern: /\bquality\b|\bchecklist\b/i },
-  { label: 'Risk', pattern: /\brisk\b/i },
+  { label: 'Risk', pattern: /\brisks?\b/i },
 ];
 
 function findMarkdownFiles(dir) {

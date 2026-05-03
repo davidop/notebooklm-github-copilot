@@ -31,4 +31,4 @@ This folder contains operational and security checklists for using NotebookLM wi
 
 ## Using checklists in a PR
 
-If your pull request introduces a new MCP server configuration, notebook source, or workflow that handles sensitive data, complete the relevant checklist and paste a summary into your PR description. Use the [Security Review Request](.github/ISSUE_TEMPLATE/security_review.yml) issue template if you need a security review before merging.
+If your pull request introduces a new MCP server configuration, notebook source, or workflow that handles sensitive data, complete the relevant checklist and paste a summary into your PR description. Use the [Security Review Request](../.github/ISSUE_TEMPLATE/security_review.yml) issue template if you need a security review before merging.

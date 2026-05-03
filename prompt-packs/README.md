@@ -42,4 +42,4 @@ Each prompt is written as a complete, self-contained instruction. Placeholders a
 
 ## Contributing a new prompt pack
 
-To add a new team pack, open an issue using the [Prompt Pack Request](.github/ISSUE_TEMPLATE/prompt_pack_request.yml) template, or submit a PR adding a new file to `team/`. Follow the existing file structure: brief intro, then a numbered or headed list of prompts with a one-line description of each.
+To add a new team pack, open an issue using the [Prompt Pack Request](../.github/ISSUE_TEMPLATE/prompt_pack_request.yml) template, or submit a PR adding a new file to `team/`. Follow the existing file structure: brief intro, then a numbered or headed list of prompts with a one-line description of each.

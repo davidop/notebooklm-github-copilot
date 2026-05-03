@@ -6,18 +6,26 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const RECIPES_DIR = join(ROOT, 'recipes');
 
+// Patterns are intentionally broad to support both existing (v0.1/v0.2) and new (v0.3) recipe formats.
+// Existing recipes use "When to use", "Required NotebookLM sources", "Prompt to use", "Expected output".
+// New recipes use "Goal", "Prerequisites", "Steps", "Example prompts", "Expected output".
 const REQUIRED_SECTIONS = [
-  { label: 'Goal', pattern: /\bgoal\b/i },
-  { label: 'Prerequisites', pattern: /\bprerequisites?\b/i },
-  { label: 'Steps', pattern: /\bsteps?\b|\bstep-by-step\b/i },
-  { label: 'Example', pattern: /\bexample/i },
+  { label: 'Goal', pattern: /\bgoal\b|\bwhen to use\b/i },
+  { label: 'Prerequisites', pattern: /\bprerequisites?\b|\brequired\b/i },
+  { label: 'Steps', pattern: /\bsteps?\b|\bstep-by-step\b|\bworkflow\b|\bprompt\b/i },
+  { label: 'Example', pattern: /\bexample\b|\bprompt\b/i },
   { label: 'Output', pattern: /\boutput\b/i },
 ];
 
 function findMarkdownFiles(dir) {
   if (!existsSync(dir)) return [];
   return readdirSync(dir, { recursive: true, withFileTypes: true })
-    .filter((entry) => entry.isFile() && entry.name.endsWith('.md'))
+    .filter(
+      (entry) =>
+        entry.isFile() &&
+        entry.name.endsWith('.md') &&
+        entry.name.toLowerCase() !== 'readme.md'
+    )
     .map((entry) => join(entry.parentPath ?? entry.path, entry.name));
 }
 

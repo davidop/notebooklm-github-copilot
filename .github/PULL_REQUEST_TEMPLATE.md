@@ -26,7 +26,7 @@
 - [ ] Security and privacy implications have been considered and documented if applicable.
 - [ ] Documentation has been updated to reflect the changes.
 - [ ] CHANGELOG.md updated if this is a notable change.
-- [ ] I have read [CONTRIBUTING.md](CONTRIBUTING.md).
+- [ ] I have read [CONTRIBUTING.md](../CONTRIBUTING.md).
 
 ## Related issues
 
