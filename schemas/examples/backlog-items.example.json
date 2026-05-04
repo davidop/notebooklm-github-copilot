@@ -1,0 +1,74 @@
+[
+  {
+    "id": "US-001",
+    "type": "UserStory",
+    "title": "Corporate IdP login for admin users",
+    "user_story": "As an admin user, I want to log in using my corporate identity provider so that I do not need a separate password for the admin portal.",
+    "acceptance_criteria": [
+      "SAML 2.0 or OIDC flow is supported",
+      "Unauthenticated requests redirect to the IdP login page",
+      "Session tokens expire after 8 hours of inactivity",
+      "Login and logout events are written to the audit log"
+    ],
+    "priority": 1,
+    "estimate_points": 8,
+    "labels": ["security", "identity", "enhancement"],
+    "parent_id": "FEAT-001",
+    "source": "security-requirements.md §4.1",
+    "ungrounded": false
+  },
+  {
+    "id": "US-002",
+    "type": "UserStory",
+    "title": "Service-to-service authentication via mTLS",
+    "user_story": "As a platform engineer, I want all inter-service communication to use mutual TLS so that no service can impersonate another.",
+    "acceptance_criteria": [
+      "mTLS is enforced on all internal service-to-service routes",
+      "A failing mTLS handshake returns a 503 with a structured error body",
+      "Certificate rotation is automated and requires no service restart",
+      "Certificate expiry events trigger an alert"
+    ],
+    "priority": 1,
+    "estimate_points": 13,
+    "labels": ["security", "architecture"],
+    "parent_id": "FEAT-001",
+    "source": "security-requirements.md §3.2, architecture-principles.md §3",
+    "ungrounded": false
+  },
+  {
+    "id": "US-003",
+    "type": "UserStory",
+    "title": "API rate limiting per client tier",
+    "user_story": "As a platform operator, I want per-client rate limits enforced at the API gateway so that no single client can degrade service for others.",
+    "acceptance_criteria": [
+      "Rate limits are configurable per client tier (free / standard / enterprise)",
+      "429 responses include a Retry-After header",
+      "Rate limit breach events are written to the audit log",
+      "Limits can be updated via GitOps without a gateway restart"
+    ],
+    "priority": 1,
+    "estimate_points": 5,
+    "labels": ["security", "enhancement"],
+    "parent_id": "FEAT-002",
+    "source": "security-requirements.md §3.2",
+    "ungrounded": false
+  },
+  {
+    "id": "US-004",
+    "type": "UserStory",
+    "title": "Transactional writes for financial records",
+    "user_story": "As a financial system, I want all financial record writes to be transactional so that partial writes do not result in inconsistent data.",
+    "acceptance_criteria": [
+      "All financial record writes are wrapped in a database transaction",
+      "Failed transactions roll back atomically",
+      "Rollback events are logged with the correlation ID",
+      "A chaos test verifies rollback under simulated failure"
+    ],
+    "priority": 1,
+    "estimate_points": 8,
+    "labels": ["architecture", "data"],
+    "parent_id": "FEAT-003",
+    "source": "architecture-principles.md §2.1",
+    "ungrounded": false
+  }
+]

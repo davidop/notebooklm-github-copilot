@@ -55,6 +55,28 @@ Other supported clients (OpenCode, Cursor) connect to the same `notebooklm-mcp` 
 
 ---
 
+## What changed in v0.4
+
+v0.4 evolves the toolkit from an enterprise reference kit into a demo-ready, easy-to-configure product that teams can try and adopt in minutes.
+
+| Area | What's new |
+|---|---|
+| **Setup wizard** | `npm run setup:wizard` — generates MCP config for VS Code, OpenCode, Cursor or generic clients |
+| **Config generator** | Non-interactive `npm run setup:vscode/opencode/cursor` commands |
+| **Doctor command** | `npm run doctor` — checks Node.js, npm, Chrome, client configs and package scripts |
+| **Demo kit** | 2-min, 5-min and 15-min scripts, sample outputs, recording checklist in `demo/` |
+| **Integration recipes** | GitHub Issues and Azure DevOps prompt-driven workflows in `integrations/` |
+| **Sample sources** | Fictional demo documents for NotebookLM in `sample-sources/` |
+| **Output schemas** | JSON Schema 2020-12 definitions for ADRs, backlog, risk register and proposals |
+| **Output format prompts** | Structured prompt packs in `prompt-packs/output-formats/` |
+| **Adoption maturity model** | 5-level adoption framework in `docs/adoption-maturity-model.md` |
+| **GitHub Pages site** | Static docs site in `site/` with `_config.yml` |
+| **Improved validation** | `check:schemas`, `check:site` added to `check:repo` |
+
+See [CHANGELOG.md](CHANGELOG.md) for the full list.
+
+---
+
 ## What changed in v0.3
 
 v0.3 adds enterprise rollout guidance, security hardening, governance templates, multi-notebook workflows, team prompt packs and an evaluation framework for source-grounded AI engineering.
@@ -73,7 +95,7 @@ See [CHANGELOG.md](CHANGELOG.md) for the full list.
 
 ---
 
-## 5-minute quickstart
+## Try it in 5 minutes
 
 **Prerequisites:** GitHub Copilot, VS Code, Node.js 18+, Chrome stable, Google account with NotebookLM access.
 
@@ -81,22 +103,53 @@ See [CHANGELOG.md](CHANGELOG.md) for the full list.
 git clone https://github.com/davidop/notebooklm-github-copilot.git
 cd notebooklm-github-copilot
 npm install
-npm run validate
+npm run doctor          # check your environment
+npm run setup:wizard    # generate VS Code / Cursor / OpenCode config
 ```
 
-1. Open the repo in VS Code.
-2. Open `.vscode/mcp.json` — click the **Start** CodeLens to launch the MCP server.
-3. Open Copilot Chat → select **Agent** mode → enable `notebooklm` tools.
-4. Authenticate once:
+1. Open `.vscode/mcp.json` — click the **Start** CodeLens to launch the MCP server.
+2. Open Copilot Chat → select **Agent** mode → enable `notebooklm` tools.
+3. Authenticate once:
    ```
    Use the NotebookLM MCP server to run setup_auth. Open the browser visibly so I can log in.
    ```
-5. Verify it works:
+4. Verify it works:
    ```
    Use NotebookLM to list my available notebooks and confirm whether I am authenticated.
    ```
 
 See [docs/setup.md](docs/setup.md) for a complete setup walkthrough.
+
+---
+
+## Guided setup
+
+The setup wizard generates MCP client configuration files without manual JSON editing:
+
+```bash
+npm run setup:wizard                                          # interactive
+npm run setup:vscode                                          # VS Code / GitHub Copilot
+npm run setup:opencode                                        # OpenCode
+npm run setup:cursor                                          # Cursor
+npm run setup:wizard -- --client vscode --version 0.1.0      # pinned version
+npm run setup:wizard -- --client cursor --force               # overwrite existing
+```
+
+See [docs/setup-wizard.md](docs/setup-wizard.md) for full usage.
+
+---
+
+## Doctor command
+
+Check your local environment before starting:
+
+```bash
+npm run doctor
+```
+
+Checks Node.js version, npm/npx, repository structure, client config files, package scripts and optional Chrome detection. Provides remediation suggestions for each issue.
+
+See [docs/doctor.md](docs/doctor.md) for details.
 
 ---
 
@@ -155,6 +208,105 @@ Step-by-step workflows for common engineering tasks:
 | [Bicep from docs](recipes/generate-bicep-from-docs.md) | Generate Bicep templates grounded in architecture specs |
 | [Terraform from docs](recipes/generate-terraform-from-docs.md) | Generate Terraform modules grounded in architecture specs |
 | [Review an RFP](recipes/review-rfp.md) | Analyse an RFP against your capability library |
+
+---
+
+## GitHub and Azure DevOps integration recipes
+
+Prompt-driven workflows for GitHub Issues and Azure DevOps:
+
+**GitHub Issues:**
+
+| Recipe | Description |
+|---|---|
+| [Create issues from NotebookLM](integrations/github/recipes/create-issues-from-notebooklm.md) | Turn NotebookLM outputs into GitHub Issues |
+| [Triage issues with NotebookLM](integrations/github/recipes/triage-issues-with-notebooklm.md) | Ground issue triage in your knowledge base |
+| [Generate PR description](integrations/github/recipes/generate-pr-description.md) | Generate grounded pull request descriptions |
+| [Generate release notes](integrations/github/recipes/generate-release-notes.md) | Create release notes from NotebookLM sources |
+| [ADR to GitHub Issues](integrations/github/recipes/adr-to-github-issues.md) | Convert ADRs into trackable GitHub Issues |
+
+**Azure DevOps:**
+
+| Recipe | Description |
+|---|---|
+| [Work items from meeting notes](integrations/azure-devops/recipes/create-work-items-from-meeting-notes.md) | Create work items from uploaded meeting notes |
+| [Epics, features, user stories](integrations/azure-devops/recipes/epics-features-user-stories.md) | Generate backlog hierarchy from requirements |
+| [Acceptance criteria](integrations/azure-devops/recipes/generate-acceptance-criteria.md) | Generate grounded acceptance criteria |
+| [Sprint planning](integrations/azure-devops/recipes/sprint-planning-from-notebooklm.md) | Plan sprints using NotebookLM sources |
+| [Delivery risk review](integrations/azure-devops/recipes/delivery-risk-review.md) | Review delivery risks with NotebookLM context |
+
+---
+
+## Demo kit
+
+Everything you need to record a compelling demo without confidential data:
+
+- [Demo README](demo/README.md) — Overview and setup assumptions
+- [2-minute script](demo/demo-script-2-min.md) — Quick intro demo
+- [5-minute script](demo/demo-script-5-min.md) — Standard team demo
+- [15-minute script](demo/demo-script-15-min.md) — Deep-dive technical demo
+- [Sample prompts](demo/sample-prompts.md) — Ready-to-paste prompts
+- [Recording checklist](demo/recording-checklist.md) — Pre/during/post recording guide
+
+---
+
+## Sample sources
+
+Fictional demo documents safe to upload to NotebookLM for demos:
+
+> **Disclaimer:** These files are fictional demo sources and do not represent a real customer.
+
+| File | Description |
+|---|---|
+| [cloud-modernization-brief.md](sample-sources/cloud-modernization-brief.md) | Fictional cloud modernization brief |
+| [architecture-principles.md](sample-sources/architecture-principles.md) | Fictional architecture principles |
+| [security-requirements.md](sample-sources/security-requirements.md) | Fictional security requirements |
+| [customer-meeting-notes.md](sample-sources/customer-meeting-notes.md) | Fictional meeting notes |
+| [vendor-implementation-guide.md](sample-sources/vendor-implementation-guide.md) | Fictional vendor guide |
+| [previous-proposal-summary.md](sample-sources/previous-proposal-summary.md) | Fictional proposal summary |
+
+---
+
+## Output schemas
+
+JSON Schema definitions for structured AI outputs:
+
+| Schema | Description |
+|---|---|
+| [adr.schema.json](schemas/adr.schema.json) | Architecture Decision Record |
+| [architecture-review.schema.json](schemas/architecture-review.schema.json) | Architecture review report |
+| [backlog-items.schema.json](schemas/backlog-items.schema.json) | Sprint backlog items |
+| [presales-proposal.schema.json](schemas/presales-proposal.schema.json) | Presales proposal |
+| [risk-register.schema.json](schemas/risk-register.schema.json) | Risk register |
+
+---
+
+## Adoption maturity model
+
+A five-level framework for adopting NotebookLM + MCP across teams:
+
+| Level | Stage |
+|---|---|
+| 0 | Ad hoc local experiments |
+| 1 | Individual developer setup |
+| 2 | Team-shared prompts and recipes |
+| 3 | Governed enterprise rollout |
+| 4 | Evaluated and continuously improved workflows |
+
+See [docs/adoption-maturity-model.md](docs/adoption-maturity-model.md) for the full model.
+
+---
+
+## GitHub Pages documentation
+
+The `site/` folder contains a static documentation site compatible with GitHub Pages:
+
+- [Getting started](site/getting-started.md)
+- [Client configuration](site/clients.md)
+- [Recipes overview](site/recipes.md)
+- [Security](site/security.md)
+- [Governance](site/governance.md)
+- [FAQ](site/faq.md)
 
 ---
 
@@ -363,12 +515,69 @@ prompt-packs/
     security.md
     delivery-management.md
     developer-enablement.md
+  output-formats/
+    README.md
+    json-adr.md
+    json-backlog.md
+    json-risk-register.md
+    markdown-executive-summary.md
+    markdown-architecture-review.md
 marketing/
   v0.3-launch.md
+  v0.4-launch.md
+integrations/
+  github/
+    README.md
+    recipes/
+  azure-devops/
+    README.md
+    recipes/
+demo/
+  README.md
+  demo-script-2-min.md
+  demo-script-5-min.md
+  demo-script-15-min.md
+  sample-prompts.md
+  sample-notebook-sources.md
+  recording-checklist.md
+  sample-outputs/
+site/
+  index.md
+  getting-started.md
+  clients.md
+  recipes.md
+  security.md
+  governance.md
+  evaluations.md
+  demo.md
+  faq.md
+sample-sources/
+  README.md
+  cloud-modernization-brief.md
+  architecture-principles.md
+  security-requirements.md
+  customer-meeting-notes.md
+  vendor-implementation-guide.md
+  previous-proposal-summary.md
+schemas/
+  README.md
+  adr.schema.json
+  architecture-review.schema.json
+  backlog-items.schema.json
+  presales-proposal.schema.json
+  risk-register.schema.json
+  examples/
 templates/
 scripts/
   validate.mjs
   smoke-test.mjs
+  setup-wizard.mjs
+  generate-client-config.mjs
+  doctor.mjs
+  check-schemas.mjs
+  check-site.mjs
+  release-notes.mjs
+_config.yml
 CHANGELOG.md
 CONTRIBUTING.md
 ROADMAP.md
@@ -383,21 +592,24 @@ package.json
 ## Recommended adoption path
 
 **New users:**
-1. Follow the [5-minute quickstart](#5-minute-quickstart)
-2. Pick a recipe from [recipes/](recipes/) that matches your workflow
-3. Review [docs/security-hardening.md](docs/security-hardening.md) before uploading documents
+1. Run `npm run doctor` to check your environment
+2. Run `npm run setup:wizard` to generate your MCP config
+3. Pick a recipe from [recipes/](recipes/) that matches your workflow
+4. Review [docs/security-hardening.md](docs/security-hardening.md) before uploading documents
 
 **Teams adopting for the first time:**
-1. Read the [team adoption playbook](governance/team-adoption-playbook.md)
-2. Complete the [enterprise rollout security checklist](checklists/security/enterprise-rollout-security-checklist.md)
-3. Choose prompt packs from [prompt-packs/team/](prompt-packs/team/)
-4. Establish evaluation cadence using [evals/](evals/)
+1. Read the [adoption maturity model](docs/adoption-maturity-model.md)
+2. Read the [team adoption playbook](governance/team-adoption-playbook.md)
+3. Complete the [enterprise rollout security checklist](checklists/security/enterprise-rollout-security-checklist.md)
+4. Choose prompt packs from [prompt-packs/team/](prompt-packs/team/)
+5. Use the [demo kit](demo/README.md) to onboard the team
 
 **Enterprise / governed deployments:**
 1. Adapt the [governance templates](governance/) to your organization
 2. Complete the [MCP server approval checklist](checklists/security/mcp-server-approval-checklist.md)
 3. Set up approved notebook registry per [approved-sources-policy.md](governance/approved-sources-policy.md)
 4. Train developers on [privacy and data handling](docs/privacy-and-data-handling.md)
+5. Establish evaluation cadence using [evals/](evals/)
 
 ---
 

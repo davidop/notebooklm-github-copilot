@@ -1,0 +1,43 @@
+{
+  "id": "ADR-001",
+  "title": "API Gateway Technology Selection",
+  "status": "Accepted",
+  "date": "2024-11-15",
+  "deciders": ["Solution Architect", "Platform Lead"],
+  "context": "The Cloud Modernisation Programme requires a managed API gateway to expose platform microservices to internal consumers and external partners. The gateway must support mTLS, rate limiting, and OAuth2/OIDC token validation without requiring custom middleware on every service. Architecture principle §3.1 mandates that all external traffic terminates at a managed edge layer.",
+  "decision": "We will use a managed cloud-native API gateway with support for OAuth2/OIDC, mTLS termination, and GitOps-managed declarative routing policies.",
+  "rationale": "The managed gateway is the only option that satisfies all three architecture principle constraints (§3.1, §3.2, §5) without requiring a dedicated gateway operations team. Self-managed options were considered but rejected due to high operational burden and failure to meet the policy-as-code requirement.",
+  "alternatives": [
+    {
+      "option": "Self-managed reverse proxy",
+      "reason_rejected": "High operational burden; does not meet policy-as-code requirement (architecture-principles.md §3.2)"
+    },
+    {
+      "option": "Service mesh with embedded ingress",
+      "reason_rejected": "Adds complexity without additional capability at current scale"
+    }
+  ],
+  "consequences": {
+    "positive": [
+      "Centralised policy enforcement reduces per-service boilerplate",
+      "Managed SLA removes the need for a dedicated gateway operations team",
+      "GitOps-compatible configuration enables auditability"
+    ],
+    "negative": [
+      "Vendor lock-in for gateway-specific routing features",
+      "Cold-start latency on auto-scaling may affect P99 response times under burst load"
+    ],
+    "implementation_tasks": [
+      "Configure mTLS between gateway and backend services",
+      "Implement OAuth2 token validation at the gateway layer",
+      "Define rate limiting policies per client tier",
+      "Set up GitOps pipeline for gateway configuration",
+      "Document failover runbook for DR activation"
+    ]
+  },
+  "sources": [
+    "architecture-principles.md §3.1, §3.2, §5",
+    "vendor-implementation-guide.md §2.3",
+    "security-requirements.md §3.2"
+  ]
+}

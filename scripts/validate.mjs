@@ -22,6 +22,28 @@ const requiredFiles = [
   'evals/source-grounding-scorecard.md',
   'checklists/security/enterprise-rollout-security-checklist.md',
   'prompt-packs/team/README.md',
+  // v0.4 required files
+  'scripts/setup-wizard.mjs',
+  'scripts/generate-client-config.mjs',
+  'scripts/doctor.mjs',
+  'scripts/check-schemas.mjs',
+  'scripts/check-site.mjs',
+  'scripts/release-notes.mjs',
+  'docs/setup-wizard.md',
+  'docs/client-config-generator.md',
+  'docs/doctor.md',
+  'docs/client-configuration-matrix.md',
+  'docs/adoption-maturity-model.md',
+  'docs/release-process.md',
+  'integrations/github/README.md',
+  'integrations/azure-devops/README.md',
+  'demo/README.md',
+  'site/index.md',
+  'site/getting-started.md',
+  'sample-sources/README.md',
+  'schemas/README.md',
+  'prompt-packs/output-formats/README.md',
+  'marketing/v0.4-launch.md',
 ];
 
 function fail(message) {

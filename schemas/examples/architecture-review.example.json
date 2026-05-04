@@ -1,0 +1,82 @@
+{
+  "title": "Architecture Review — Cloud Modernisation Platform",
+  "review_date": "2024-11-15",
+  "scope": "Core platform services — API layer, identity, data tier",
+  "sources": [
+    "architecture-principles.md",
+    "security-requirements.md",
+    "vendor-implementation-guide.md §2",
+    "customer-meeting-notes.md"
+  ],
+  "fitness_for_purpose": {
+    "summary": "The proposed architecture addresses the core modernisation objectives. No significant gaps identified against stated objectives.",
+    "findings": [
+      {
+        "area": "API layer",
+        "assessment": "The managed gateway approach satisfies the policy-as-code and multi-region requirements.",
+        "source": "architecture-principles.md §3"
+      },
+      {
+        "area": "Identity",
+        "assessment": "Federated identity via the corporate IdP meets the zero-standing-privilege requirement.",
+        "source": "security-requirements.md §4.1"
+      },
+      {
+        "area": "Data tier",
+        "assessment": "The relational data store selection is consistent with the ACID-consistency principle for financial records.",
+        "source": "architecture-principles.md §2"
+      }
+    ]
+  },
+  "security_posture": {
+    "strengths": [
+      "mTLS between all internal services — consistent with security-requirements.md §3.2",
+      "OAuth2/OIDC at the gateway layer — consistent with security-requirements.md §4",
+      "Audit logging specified for all authentication events"
+    ],
+    "concerns": [
+      {
+        "severity": "MEDIUM",
+        "description": "EU data residency requirement for backup storage is unresolved. The current architecture does not specify whether backup volumes are placed in an EU-compliant region.",
+        "source": "architecture-principles.md §Data; customer-meeting-notes.md §Open questions"
+      },
+      {
+        "severity": "LOW",
+        "description": "Certificate rotation mechanism for mTLS is not yet designed. Manual rotation creates an operational risk.",
+        "source": "vendor-implementation-guide.md §3.2"
+      }
+    ]
+  },
+  "scalability_concerns": [
+    "The relational data tier introduces a vertical scaling ceiling; partitioning strategy is not yet defined.",
+    "Read-heavy workloads may saturate the primary database replica at projected peak traffic (> 5 000 concurrent users)."
+  ],
+  "compliance_gaps": [
+    {
+      "requirement": "EU data residency for backup storage",
+      "status": "Open",
+      "source": "architecture-principles.md §Data"
+    },
+    {
+      "requirement": "Annual penetration test schedule",
+      "status": "Not specified",
+      "source": "security-requirements.md §6.1"
+    },
+    {
+      "requirement": "GDPR data retention policy for audit logs",
+      "status": "Not specified",
+      "source": "security-requirements.md §7"
+    }
+  ],
+  "open_questions": [
+    "Does EU data residency apply to backup storage volumes?",
+    "What is the target RTO/RPO for the DR configuration?",
+    "Is a caching layer in scope for v1, or deferred to v2?"
+  ],
+  "recommendations": [
+    "Resolve EU data residency question before designing the backup architecture.",
+    "Design the mTLS certificate rotation mechanism in the next sprint; automate with cert-manager.",
+    "Define a database partitioning strategy before the performance test milestone.",
+    "Document the penetration test schedule to satisfy security-requirements.md §6.1."
+  ]
+}

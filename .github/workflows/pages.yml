@@ -1,0 +1,48 @@
+# GitHub Pages deployment workflow
+# Deploys the site/ folder to GitHub Pages on every push to main.
+#
+# Before this workflow will run successfully, GitHub Pages must be enabled
+# in the repository settings:
+#   Settings -> Pages -> Source: GitHub Actions
+
+name: Deploy GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+
+# Allow only one concurrent deployment, cancelling any in-progress run
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Upload Pages artifact
+        # Uploads the site/ directory as the Pages artifact.
+        # Jekyll processing is disabled (static files only).
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site/
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

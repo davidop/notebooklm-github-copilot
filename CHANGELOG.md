@@ -6,6 +6,38 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.4.0] — Adoption-ready product experience
+
+### Added
+
+- **Setup wizard** — `scripts/setup-wizard.mjs` and `docs/setup-wizard.md`. Interactive CLI that generates MCP configs for VS Code, OpenCode, Cursor and generic clients. No NotebookLM login required.
+- **Client config generator** — `scripts/generate-client-config.mjs` and `docs/client-config-generator.md`. Non-interactive config generation via CLI flags.
+- **Doctor command** — `scripts/doctor.mjs` and `docs/doctor.md`. Local readiness checker for Node.js, npm, client configs, package scripts and Chrome. Clearly notes authentication must be tested manually.
+- **GitHub Issues integration recipes** — Five prompt-driven workflow recipes in `integrations/github/recipes/`: create issues, triage issues, generate PR descriptions, generate release notes, convert ADRs to issues.
+- **Azure DevOps integration recipes** — Five prompt-driven workflow recipes in `integrations/azure-devops/recipes/`: create work items from meeting notes, epics/features/user stories, acceptance criteria, sprint planning, delivery risk review.
+- **Demo kit** — `demo/` folder with 2-min, 5-min and 15-min demo scripts, sample prompts, four sample outputs (ADR, architecture review, backlog, presales proposal), recording checklist, and sample notebook sources guide.
+- **GitHub Pages documentation site** — `site/` folder with index, getting started, clients, recipes, security, governance, evaluations, demo and FAQ pages. `_config.yml` for Jekyll/GitHub Pages.
+- **SVG diagram assets** — `assets/demo-flow.svg`, `assets/client-matrix.svg`, `assets/enterprise-adoption-flow.svg` using generic shapes only.
+- **Sample sources** — `sample-sources/` with six fictional demo documents (cloud modernization brief, architecture principles, security requirements, customer meeting notes, vendor implementation guide, previous proposal summary). Clearly labelled as fictional.
+- **Output schemas** — `schemas/` with five JSON Schema 2020-12 definitions (ADR, architecture review, backlog items, presales proposal, risk register) and four example JSON files.
+- **Output format prompt packs** — `prompt-packs/output-formats/` with five structured prompt packs for JSON and Markdown output formats.
+- **Adoption maturity model** — `docs/adoption-maturity-model.md` with 5-level framework from ad hoc experiments to evaluated enterprise workflows.
+- **Client configuration matrix** — `docs/client-configuration-matrix.md` comparison table for all supported MCP clients.
+- **Release notes helper** — `scripts/release-notes.mjs` and `docs/release-process.md`. Generates release notes from CHANGELOG.md locally without GitHub API calls.
+- **Marketing launch material** — `marketing/v0.4-launch.md` with LinkedIn posts, X/Twitter post, blog outline, HN pitch, Product Hunt tagline, demo video script and suggested screenshots.
+
+### Changed
+
+- `package.json` — Version bumped to `0.4.0`. Added scripts: `setup:wizard`, `setup:vscode`, `setup:opencode`, `setup:cursor`, `doctor`, `check:schemas`, `check:site`, `release:notes`. Updated `check:repo` to include `check:schemas` and `check:site`.
+- `scripts/validate.mjs` — Added v0.4 required file checks.
+- `scripts/check-recipes.mjs` — Now also scans `integrations/` directory. Added `scenario` as a valid section heading pattern.
+- `scripts/check-prompts.mjs` — Now handles `output-formats/` prompt packs with a separate set of required sections.
+- `README.md` — Added v0.4 sections: What changed in v0.4, Try it in 5 minutes (updated), Guided setup, Client config generator, Doctor command, Demo kit, Sample sources, GitHub Pages docs, Integration recipes, Output schemas, Adoption maturity model, updated Repository map.
+- `README.es.md` — Added Spanish sections for all v0.4 features.
+- `ROADMAP.md` — Marked v0.4 complete, added v0.5 roadmap.
+
+---
+
 ## [0.3.0] — Enterprise readiness, governance and evaluation
 
 ### Added

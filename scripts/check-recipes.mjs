@@ -5,15 +5,17 @@ import { fileURLToPath } from 'node:url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 const RECIPES_DIR = join(ROOT, 'recipes');
+const INTEGRATIONS_DIR = join(ROOT, 'integrations');
 
-// Patterns are intentionally broad to support both existing (v0.1/v0.2) and new (v0.3) recipe formats.
+// Patterns are intentionally broad to support both existing (v0.1/v0.2/v0.3) and new (v0.4) recipe formats.
 // Existing recipes use "When to use", "Required NotebookLM sources", "Prompt to use", "Expected output".
 // New recipes use "Goal", "Prerequisites", "Steps", "Example prompts", "Expected output".
+// Integration recipes use "Scenario", "Required NotebookLM sources", "Prompt", "Expected output", "Limitations".
 const REQUIRED_SECTIONS = [
-  { label: 'Goal', pattern: /\bgoal\b|\bwhen to use\b/i },
-  { label: 'Prerequisites', pattern: /\bprerequisites?\b|\brequired\b/i },
-  { label: 'Steps', pattern: /\bsteps?\b|\bstep-by-step\b|\bworkflow\b|\bprompt\b/i },
-  { label: 'Example', pattern: /\bexample\b|\bprompt\b/i },
+  { label: 'Goal/Scenario', pattern: /\bgoal\b|\bwhen to use\b|\bscenario\b/i },
+  { label: 'Prerequisites/Required', pattern: /\bprerequisites?\b|\brequired\b/i },
+  { label: 'Steps/Prompt', pattern: /\bsteps?\b|\bstep-by-step\b|\bworkflow\b|\bprompt\b/i },
+  { label: 'Example/Prompt', pattern: /\bexample\b|\bprompt\b/i },
   { label: 'Output', pattern: /\boutput\b/i },
 ];
 
@@ -37,7 +39,9 @@ function extractHeadings(content) {
 }
 
 let errorCount = 0;
-const mdFiles = findMarkdownFiles(RECIPES_DIR);
+const recipeMdFiles = findMarkdownFiles(RECIPES_DIR);
+const integrationMdFiles = findMarkdownFiles(INTEGRATIONS_DIR);
+const mdFiles = [...recipeMdFiles, ...integrationMdFiles];
 
 if (mdFiles.length === 0) {
   console.log('No recipe files found — skipping check.');

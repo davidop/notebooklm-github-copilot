@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/davidop/notebooklm-github-copilot/schemas/architecture-review.schema.json",
+  "title": "Architecture Review",
+  "description": "A structured architecture review output produced by NotebookLM + GitHub Copilot.",
+  "type": "object",
+  "required": ["title", "review_date", "scope", "fitness_for_purpose", "security_posture", "open_questions", "recommendations"],
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Title of the architecture review",
+      "minLength": 5,
+      "maxLength": 150
+    },
+    "review_date": {
+      "type": "string",
+      "description": "Date of the review (ISO 8601 format)",
+      "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$"
+    },
+    "scope": {
+      "type": "string",
+      "description": "What components or systems were reviewed",
+      "minLength": 10
+    },
+    "sources": {
+      "type": "array",
+      "description": "NotebookLM source documents used in this review",
+      "items": { "type": "string" }
+    },
+    "fitness_for_purpose": {
+      "type": "object",
+      "description": "Assessment of whether the architecture meets its stated objectives",
+      "required": ["summary", "findings"],
+      "properties": {
+        "summary": { "type": "string" },
+        "findings": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["area", "assessment", "source"],
+            "properties": {
+              "area": { "type": "string" },
+              "assessment": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "security_posture": {
+      "type": "object",
+      "description": "Security assessment of the architecture",
+      "required": ["strengths", "concerns"],
+      "properties": {
+        "strengths": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
+        "concerns": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["severity", "description", "source"],
+            "properties": {
+              "severity": {
+                "type": "string",
+                "enum": ["CRITICAL", "HIGH", "MEDIUM", "LOW"]
+              },
+              "description": { "type": "string" },
+              "source": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "scalability_concerns": {
+      "type": "array",
+      "description": "Identified scalability risks or limitations",
+      "items": { "type": "string" }
+    },
+    "compliance_gaps": {
+      "type": "array",
+      "description": "Identified compliance or regulatory gaps",
+      "items": {
+        "type": "object",
+        "required": ["requirement", "status", "source"],
+        "properties": {
+          "requirement": { "type": "string" },
+          "status": {
+            "type": "string",
+            "enum": ["Compliant", "Open", "Not specified", "In progress"]
+          },
+          "source": { "type": "string" }
+        }
+      }
+    },
+    "open_questions": {
+      "type": "array",
+      "description": "Questions that remain unanswered after the review",
+      "items": { "type": "string" },
+      "minItems": 0
+    },
+    "recommendations": {
+      "type": "array",
+      "description": "Specific, actionable recommendations",
+      "items": { "type": "string" },
+      "minItems": 1
+    }
+  },
+  "additionalProperties": false
+}

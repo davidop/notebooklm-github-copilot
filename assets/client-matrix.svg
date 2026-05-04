@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 260" width="760" height="260">
+  <rect width="760" height="260" fill="#f8f9fa"/>
+
+  <!-- Title -->
+  <text x="380" y="28" text-anchor="middle" font-family="sans-serif" font-size="14" fill="#333" font-weight="bold">MCP Client Configuration Matrix</text>
+
+  <!-- MCP Server (center) -->
+  <rect x="300" y="100" width="160" height="60" rx="8" fill="#fff3e0" stroke="#ff9800" stroke-width="2.5"/>
+  <text x="380" y="126" text-anchor="middle" font-family="sans-serif" font-size="13" fill="#1a1a1a" font-weight="bold">notebooklm-mcp</text>
+  <text x="380" y="146" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#555">MCP Server</text>
+
+  <!-- VS Code box -->
+  <rect x="30" y="50" width="140" height="50" rx="6" fill="#e8f4fd" stroke="#2196f3" stroke-width="2"/>
+  <text x="100" y="72" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">VS Code</text>
+  <text x="100" y="89" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#555">.vscode/mcp.json</text>
+
+  <!-- Cursor box -->
+  <rect x="30" y="150" width="140" height="50" rx="6" fill="#e8fde8" stroke="#4caf50" stroke-width="2"/>
+  <text x="100" y="172" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Cursor</text>
+  <text x="100" y="189" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#555">.cursor/mcp.json</text>
+
+  <!-- OpenCode box -->
+  <rect x="590" y="100" width="140" height="60" rx="6" fill="#f3e5f5" stroke="#9c27b0" stroke-width="2"/>
+  <text x="660" y="126" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">OpenCode</text>
+  <text x="660" y="146" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#555">opencode.jsonc</text>
+
+  <!-- Generic box -->
+  <rect x="310" y="195" width="140" height="45" rx="6" fill="#fafafa" stroke="#9e9e9e" stroke-width="2"/>
+  <text x="380" y="215" text-anchor="middle" font-family="sans-serif" font-size="12" fill="#1a1a1a" font-weight="bold">Generic MCP</text>
+  <text x="380" y="232" text-anchor="middle" font-family="sans-serif" font-size="10" fill="#555">any compatible client</text>
+
+  <!-- Arrows: clients to MCP server -->
+  <!-- VS Code to MCP -->
+  <line x1="170" y1="75" x2="298" y2="118" stroke="#2196f3" stroke-width="1.5" marker-end="url(#arrowB)"/>
+  <text x="225" y="86" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#777">stdio</text>
+
+  <!-- Cursor to MCP -->
+  <line x1="170" y1="175" x2="298" y2="140" stroke="#4caf50" stroke-width="1.5" marker-end="url(#arrowG)"/>
+  <text x="225" y="170" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#777">stdio</text>
+
+  <!-- OpenCode to MCP -->
+  <line x1="590" y1="130" x2="462" y2="130" stroke="#9c27b0" stroke-width="1.5" marker-end="url(#arrowP)"/>
+  <text x="525" y="122" text-anchor="middle" font-family="sans-serif" font-size="9" fill="#777">stdio</text>
+
+  <!-- Generic to MCP -->
+  <line x1="380" y1="194" x2="380" y2="162" stroke="#9e9e9e" stroke-width="1.5" stroke-dasharray="4,3" marker-end="url(#arrowN)"/>
+
+  <defs>
+    <marker id="arrowB" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#2196f3"/>
+    </marker>
+    <marker id="arrowG" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#4caf50"/>
+    </marker>
+    <marker id="arrowP" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#9c27b0"/>
+    </marker>
+    <marker id="arrowN" markerWidth="7" markerHeight="7" refX="5" refY="2.5" orient="auto">
+      <path d="M0,0 L0,5 L7,2.5 z" fill="#9e9e9e"/>
+    </marker>
+  </defs>
+</svg>

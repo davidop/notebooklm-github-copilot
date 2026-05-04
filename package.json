@@ -1,6 +1,6 @@
 {
   "name": "notebooklm-github-copilot",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "private": true,
   "description": "Connect GitHub Copilot with NotebookLM through MCP for source-grounded coding, architecture, and presales workflows.",
   "type": "module",
@@ -14,7 +14,9 @@
     "grounded-ai",
     "architecture",
     "presales",
-    "azure"
+    "azure",
+    "demo",
+    "setup-wizard"
   ],
   "scripts": {
     "validate": "node scripts/validate.mjs",
@@ -27,8 +29,16 @@
     "check:recipes": "node scripts/check-recipes.mjs",
     "check:prompts": "node scripts/check-prompts.mjs",
     "check:frontmatter": "node scripts/check-frontmatter.mjs",
+    "check:schemas": "node scripts/check-schemas.mjs",
+    "check:site": "node scripts/check-site.mjs",
+    "check:repo": "npm run validate && npm run check:links && npm run check:recipes && npm run check:prompts && npm run check:frontmatter && npm run check:schemas && npm run check:site",
     "docs:index": "node scripts/generate-doc-index.mjs",
-    "check:repo": "npm run validate && npm run check:links && npm run check:recipes && npm run check:prompts && npm run check:frontmatter"
+    "setup:wizard": "node scripts/setup-wizard.mjs",
+    "setup:vscode": "node scripts/generate-client-config.mjs --client vscode --version latest --output .vscode/mcp.json",
+    "setup:opencode": "node scripts/generate-client-config.mjs --client opencode --version latest --output opencode.jsonc",
+    "setup:cursor": "node scripts/generate-client-config.mjs --client cursor --version latest --output .cursor/mcp.json",
+    "doctor": "node scripts/doctor.mjs",
+    "release:notes": "node scripts/release-notes.mjs"
   },
   "engines": {
     "node": ">=18"
